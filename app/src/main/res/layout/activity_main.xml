@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+        <!--
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/logo" />
+-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Do you want to help us rescue some pets?"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/joinUs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/buttonColor"
+                    android:layout_margin="10dp"
+                    android:text="join us" />
+
+
+
+</LinearLayout>
