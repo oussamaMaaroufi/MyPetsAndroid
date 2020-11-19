@@ -132,4 +132,5 @@
         android:gravity="center"
         android:text="Sign Up" />
 
+
 </LinearLayout>

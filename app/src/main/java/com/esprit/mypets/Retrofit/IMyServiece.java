@@ -7,14 +7,14 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface IMyServiece {
-    @POST("register")
+    @POST("users/register")
     @FormUrlEncoded
     Observable<String> registerUser(@Field("email") String email,
                                     @Field("name") String name,
                                     @Field("password")String password,
                                     @Field("type") String type);
 
-    @POST("auth")
+    @POST("users/auth")
     @FormUrlEncoded
     Observable<String> loginUser(@Field("email") String email,
                                     @Field("password")String password);

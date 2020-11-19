@@ -24,23 +24,24 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText email,password;
+    private EditText email;
+    private EditText password;
     private Button btnSignIn;
     private Button btntSignInFb;
     private Button btntSignInGoogle;
     private Button btntSignInTwt;
     private Button btnRegister;
-    private static String ss;
+  //  private static Object Activity = LoginActivity.this;
 
-    CompositeDisposable  compositeDisposable = new CompositeDisposable();
+    CompositeDisposable  compositeDisposable ; // = new CompositeDisposable();
     IMyServiece iMyServiece;
-
+/*
     @Override
     protected void onStop() {
         compositeDisposable.clear();
         super.onStop();
     }
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,17 +59,21 @@ public class LoginActivity extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyServiece =retrofitClient.create(IMyServiece.class);
 
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    liginUser(email.getText().toString(), password.getText().toString());
-
-
-
                 Intent intent =new Intent(LoginActivity.this,RegisterActivity.class);
-
                 startActivity(intent);
+            }
+        });
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                liginUser(email.getText().toString(), password.getText().toString());
+
+
             }
         });
 
@@ -82,20 +87,25 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
         }
 
-          /*  compositeDisposable(iMyServiece.loginUser(email, password)
+        try {
+
+            compositeDisposable = new CompositeDisposable(iMyServiece.loginUser(email, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(s -> {
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String s) throws Exception {
+                            Toast.makeText(LoginActivity.this, "" + s, Toast.LENGTH_SHORT).show();
+                        }
+                    }));
+        }catch (Exception e){
+            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
-                    }));*/
+
 
 
     }
 
 
-
-    private void toastMake(String s){
-        Toast.makeText(LoginActivity.this,""+s,Toast.LENGTH_SHORT).show();
-
-    }
 }
