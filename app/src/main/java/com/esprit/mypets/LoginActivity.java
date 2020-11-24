@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.esprit.mypets.Retrofit.IMyServiece;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.google.android.material.datepicker.CompositeDateValidator;
+import com.google.gson.JsonObject;
 
 import java.io.Console;
 
@@ -27,30 +28,28 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button btnSignIn;
-    private Button btntSignInFb;
     private Button btntSignInGoogle;
-    private Button btntSignInTwt;
     private Button btnRegister;
   //  private static Object Activity = LoginActivity.this;
 
-    CompositeDisposable  compositeDisposable ; // = new CompositeDisposable();
+    CompositeDisposable  compositeDisposable = new CompositeDisposable();
     IMyServiece iMyServiece;
-/*
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();
         super.onStop();
     }
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         btnRegister =findViewById(R.id.btnRegister);
         btnSignIn = findViewById(R.id.btnSignIn);
-        btntSignInFb = findViewById(R.id.btnSignInFb);
+
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
-        btntSignInTwt = findViewById(R.id.btnSignInTwitter);
+
         email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
 
@@ -88,8 +87,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         try {
+            Toast.makeText(LoginActivity.this,email+" "+password, Toast.LENGTH_SHORT).show();
 
-            compositeDisposable = new CompositeDisposable(iMyServiece.loginUser(email, password)
+            compositeDisposable.add(iMyServiece.loginUser(email, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<String>() {
