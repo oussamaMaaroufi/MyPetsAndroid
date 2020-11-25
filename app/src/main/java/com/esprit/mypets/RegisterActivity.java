@@ -47,25 +47,37 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                User user = new User();
+
                 if(email.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }
+                user.setEmail(email.getText().toString());
                 if(password.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }
+                user.setPassword(password.getText().toString());
+                if(name.getText().toString().isEmpty()){
+                    Toast.makeText(RegisterActivity.this,"name cannot be null or empyt",Toast.LENGTH_SHORT).show();
+                }
+                user.setName(name.getText().toString());
+
               int butceck =  radioGroup.getCheckedRadioButtonId();
                 switch (butceck){
-                    case R.id.RadioButton1 :
+                    case R.id.RadioButton1 : user.setType(TypeUser.Volontaires);break;
+                    case R.id.RadioButton2 : user.setType(TypeUser.Abris);break;
+                    case R.id.RadioButton3 : user.setType(TypeUser.Veterinaires);break;
+                    default:  Toast.makeText(RegisterActivity.this,"Role cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }
-
+                if (user.getType()!= null){
+                    RegisterUser(user);
+                }
             }
         });
     }
 
 
-    private  void RegisterUser(String name, String email, String password, TypeUser Type){
-
-        User user =new User(name,email,password,Type);
+    private  void RegisterUser(User user){
 
         try {
 

@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private Button btntSignInGoogle;
     private Button btnRegister;
-    private TextView ErrorTxt;
   //  private static Object Activity = LoginActivity.this;
 
     //CompositeDisposable  compositeDisposable = new CompositeDisposable();
@@ -56,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
 
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
-        ErrorTxt = findViewById(R.id.ErrorSignIn);
+
 
         email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
@@ -104,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     if(!response.isSuccessful()){
                         Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
-                        ErrorTxt.setText("Code : "+response.code());
+
                     }
                     UserResponse userResponse =response.body();
                     if (userResponse.getSuccess().equals("true")){
@@ -122,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                    Toast.makeText(LoginActivity.this,call.request() +t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
