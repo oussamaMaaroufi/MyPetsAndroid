@@ -14,10 +14,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface IMyServiece {
-    @POST("users/register")
-    @FormUrlEncoded
-    Call<UserResponse> registerUser(@Body User user);
 
+    @POST("users/register")
+    Call<UserResponse> registerUser(@Body User user);
+    //@Body: encapsulate what we want to send to the server
     @POST("users/auth")
     Call<UserResponse> loginUser(@Body User user);
 

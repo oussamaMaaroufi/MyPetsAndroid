@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                liginUser(email.getText().toString(), password.getText().toString());
+                loginUser(email.getText().toString(), password.getText().toString());
 
 
             }
@@ -86,17 +86,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    private  void liginUser(String email,String password){
+    private  void loginUser(String email,String password){
         if(email.isEmpty()){
-            Toast.makeText(this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Email cannot be null or empty",Toast.LENGTH_SHORT).show();
         }
         if(password.isEmpty()){
-            Toast.makeText(this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"password cannot be null or empty",Toast.LENGTH_SHORT).show();
         }
         User user =new User(email,password);
 
         try {
-            Toast.makeText(LoginActivity.this,email+" "+password, Toast.LENGTH_SHORT).show();
+
 
             Call<UserResponse> call = iMyServiece.loginUser(user);
             call.enqueue(new Callback<UserResponse>() {
