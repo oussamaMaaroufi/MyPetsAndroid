@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IMyServiece;
 import com.esprit.mypets.Retrofit.RetrofitClient;
+import com.esprit.mypets.entity.User;
+import com.esprit.mypets.entyityResponse.UserResponse;
 import com.google.android.material.datepicker.CompositeDateValidator;
 import com.google.gson.JsonObject;
 
@@ -22,6 +25,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,14 +36,15 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private Button btntSignInGoogle;
     private Button btnRegister;
+    private TextView ErrorTxt;
   //  private static Object Activity = LoginActivity.this;
 
-    CompositeDisposable  compositeDisposable = new CompositeDisposable();
+    //CompositeDisposable  compositeDisposable = new CompositeDisposable();
     IMyServiece iMyServiece;
 
     @Override
     protected void onStop() {
-        compositeDisposable.clear();
+        //compositeDisposable.clear();
         super.onStop();
     }
 
@@ -49,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
 
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
+        ErrorTxt = findViewById(R.id.ErrorSignIn);
 
         email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
@@ -85,19 +93,39 @@ public class LoginActivity extends AppCompatActivity {
         if(password.isEmpty()){
             Toast.makeText(this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
         }
+        User user =new User(email,password);
 
         try {
             Toast.makeText(LoginActivity.this,email+" "+password, Toast.LENGTH_SHORT).show();
 
-            compositeDisposable.add(iMyServiece.loginUser(email, password)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {
-                        @Override
-                        public void accept(String s) throws Exception {
-                            Toast.makeText(LoginActivity.this, "" + s, Toast.LENGTH_SHORT).show();
-                        }
-                    }));
+            Call<UserResponse> call = iMyServiece.loginUser(user);
+            call.enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                    if(!response.isSuccessful()){
+                        Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
+                        ErrorTxt.setText("Code : "+response.code());
+                    }
+                    UserResponse userResponse =response.body();
+                    if (userResponse.getSuccess().equals("true")){
+                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                        User user1 = userResponse.getUser();
+                        intent.putExtra("Name",user1.getName());
+                        intent.putExtra("Email",user1.getEmail());
+                        intent.putExtra("Type",user1.getType());
+                        intent.putExtra("Token",userResponse.getToken());
+                        startActivityForResult(intent,1);
+
+                    }
+                  //  Toast.makeText(LoginActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<UserResponse> call, Throwable t) {
+
+                }
+            });
+
         }catch (Exception e){
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
