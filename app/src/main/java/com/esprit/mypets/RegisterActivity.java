@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         startActivity(intent);
 
-        /*
+/*
         try {
             Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
 
@@ -120,8 +120,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-         */
 
+*/
 
 
 
