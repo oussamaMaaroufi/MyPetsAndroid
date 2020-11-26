@@ -3,28 +3,20 @@ package com.esprit.mypets;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.esprit.mypets.Retrofit.IMyServiece;
+import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.RetrofitClient;
+import com.esprit.mypets.database.AppDatabase;
 import com.esprit.mypets.entity.User;
+import com.esprit.mypets.entity.UserSharedpref;
 import com.esprit.mypets.entyityResponse.UserResponse;
-import com.google.android.material.datepicker.CompositeDateValidator;
-import com.google.gson.JsonObject;
 
-import java.io.Console;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,14 +28,15 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private Button btntSignInGoogle;
     private Button btnRegister;
-  //  private static Object Activity = LoginActivity.this;
+   // private AppDatabase database;
 
-    //CompositeDisposable  compositeDisposable = new CompositeDisposable();
-    IMyServiece iMyServiece;
+    IServieceUser iServieceUser;
+  //  final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref1", 0); // 0 - for private mode
+   // final SharedPreferences.Editor editor = pref.edit();
+
 
     @Override
     protected void onStop() {
-        //compositeDisposable.clear();
         super.onStop();
     }
 
@@ -53,17 +46,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         btnRegister =findViewById(R.id.btnRegister);
         btnSignIn = findViewById(R.id.btnSignIn);
-
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
-
-
-        email = findViewById(R.id.TxtEmail);
+         email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
+
+     ///   database = AppDatabase.getInstance(this);
 
         //Init service
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
-        iMyServiece =retrofitClient.create(IMyServiece.class);
+        iServieceUser =retrofitClient.create(IServieceUser.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,49 +80,57 @@ public class LoginActivity extends AppCompatActivity {
     private  void liginUser(String email,String password){
         if(email.isEmpty()){
             Toast.makeText(this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
-        }
+        }else
         if(password.isEmpty()){
             Toast.makeText(this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
-        }
-        User user =new User(email,password);
+        }else if(!email.isEmpty() && !password.isEmpty() ){
+            User user = new User(email, password);
 
-        try {
-            Toast.makeText(LoginActivity.this,email+" "+password, Toast.LENGTH_SHORT).show();
+            try {
+                Toast.makeText(LoginActivity.this, email + " " + password, Toast.LENGTH_SHORT).show();
 
-            Call<UserResponse> call = iMyServiece.loginUser(user);
-            call.enqueue(new Callback<UserResponse>() {
-                @Override
-                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
+                Call<UserResponse> call = iServieceUser.loginUser(user);
+                call.enqueue(new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
 
+                        }
+                        UserResponse userResponse = response.body();
+                        if (userResponse.getSuccess().equals("true")) {
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            User u1 = userResponse.getUser();
+                         /*   UserSharedpref userS = new UserSharedpref();
+                            userS.setEmail(u1.getEmail());
+                            userS.setIdUser(u1.getId());
+                            userS.setName(u1.getName());
+                            userS.setType(u1.getType().toString());
+                            database.userDao().insertAll(userS);
+                            editor.commit();
+                            startActivity(intent); */
+                            User user1 = userResponse.getUser();
+                            intent.putExtra("Name",user1.getName());
+                            intent.putExtra("Email",user1.getEmail());
+                            intent.putExtra("Type",user1.getType());
+                            intent.putExtra("Token",userResponse.getToken());
+                            startActivityForResult(intent,1);
+
+                        }
+                        //  Toast.makeText(LoginActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
-                    UserResponse userResponse =response.body();
-                    if (userResponse.getSuccess().equals("true")){
-                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                        User user1 = userResponse.getUser();
-                        intent.putExtra("Name",user1.getName());
-                        intent.putExtra("Email",user1.getEmail());
-                        intent.putExtra("Type",user1.getType());
-                        intent.putExtra("Token",userResponse.getToken());
-                        startActivityForResult(intent,1);
 
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, call.request() + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                  //  Toast.makeText(LoginActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
-                }
+                });
 
-                @Override
-                public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this,call.request() +t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            } catch (Exception e) {
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
-        }catch (Exception e){
-            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
-
 
     }
 

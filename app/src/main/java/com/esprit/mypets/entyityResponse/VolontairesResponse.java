@@ -1,12 +1,11 @@
 package com.esprit.mypets.entyityResponse;
 
-import com.esprit.mypets.entity.User;
+import com.esprit.mypets.entity.Volontaires;
 
-public class UserResponse {
+public class VolontairesResponse {
     private String success;
     private String message;
-    private User user;
-    private String token;
+    private Volontaires volontaires;
 
     public String getSuccess() {
         return success;
@@ -24,31 +23,20 @@ public class UserResponse {
         this.message = message;
     }
 
-    public User getUser() {
-        return user;
+    public Volontaires getVolontaires() {
+        return volontaires;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setVolontaires(Volontaires volontaires) {
+        this.volontaires = volontaires;
     }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-
 
     @Override
     public String toString() {
-        return "UserResponse{" +
+        return "VolontairesResponse{" +
                 "success='" + success + '\'' +
                 ", message='" + message + '\'' +
-                ", user=" + user +
-            //    ", token='" + token + '\'' +
+                ", volontaires=" + volontaires +
                 '}';
     }
 }

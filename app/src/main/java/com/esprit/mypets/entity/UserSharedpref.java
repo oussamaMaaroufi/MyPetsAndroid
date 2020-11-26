@@ -1,37 +1,46 @@
 package com.esprit.mypets.entity;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
-
-
-public class User {
-    private String id;
+@Entity
+public class UserSharedpref {
+    @PrimaryKey
+    private int id;
+    private String idProfi;
+    private String idUser;
     private String name;
     private String email;
     private String password;
-    private TypeUser type;
+    private String type;
 
-    public User( ) {
+    public UserSharedpref( ) {
 
     }
 
-    public User(String name, String email, String password, TypeUser type) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-    }
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIdProfi() {
+        return idProfi;
+    }
+
+    public void setIdProfi(String idProfi) {
+        this.idProfi = idProfi;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
@@ -56,9 +65,10 @@ public class User {
         this.password = password;
     }
 
-    public TypeUser getType() { return type; }
+    public String getType() { return type; }
 
-    public void setType(TypeUser type) { this.type = type; }
+    @TypeConverter
+    public void setType(String type) { this.type = type; }
 
     @Override
     public String toString() {
