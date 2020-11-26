@@ -45,41 +45,35 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
+
 
                 User user = new User();
 
                 if(email.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
-                }
-                user.setEmail(email.getText().toString());
-                if(password.getText().toString().isEmpty()){
+                }else if(password.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
-                }
-                user.setPassword(password.getText().toString());
-                if(name.getText().toString().isEmpty()){
-                    Toast.makeText(RegisterActivity.this,"name cannot be null or empyt",Toast.LENGTH_SHORT).show();
-                }
-                user.setName(name.getText().toString());
-
-             /*
-                switch (radioGroup.getCheckedRadioButtonId()){
-                    case R.id.RadioButton1 : user.setType(TypeUser.Volontaires);break;
-                    case R.id.RadioButton2 : user.setType(TypeUser.Abris);break;
-                    case R.id.RadioButton3 : user.setType(TypeUser.Veterinaires);break;
-                    default:  Toast.makeText(RegisterActivity.this,"Role cannot be null or empyt",Toast.LENGTH_SHORT).show();
+                }else  if(name.getText().toString().isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "name cannot be null or empyt", Toast.LENGTH_SHORT).show();
+                }else {
+              /*  }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton1){
+                    user.setType(TypeUser.Volontaires);
+                }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton2){
+                    user.setType(TypeUser.Abris);
+                }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton3){
+                    user.setType(TypeUser.Veterinaires);
                 }
 
-
-                user.setType(TypeUser.Veterinaires);
-
+               */
+                    user.setEmail(email.getText().toString());
+                    user.setName(name.getText().toString());
+                    user.setPassword(password.getText().toString());
+                    user.setType(TypeUser.Veterinaires);
 
 
                     RegisterUser(user);
-*/
-                Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
+                }
 
-                startActivity(intent);
             }
         });
 
@@ -88,11 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private  void RegisterUser(User user){
-        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
 
-        startActivity(intent);
 
-        /*
         try {
             Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
 
@@ -111,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }
-                    //  Toast.makeText(LoginActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
+                      Toast.makeText(RegisterActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -124,8 +115,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-         */
 
+        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
+
+        startActivity(intent);
 
 
 

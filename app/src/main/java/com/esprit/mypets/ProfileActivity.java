@@ -20,6 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        save = findViewById(R.id.ProfilSave);
 
 
         btnuplode = findViewById(R.id.uplodeimage);
@@ -44,7 +45,17 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
                 }).start();
+
+
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
+
+
         });
 
 
