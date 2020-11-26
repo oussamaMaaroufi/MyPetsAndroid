@@ -14,7 +14,7 @@ public class RetrofitClient {
 
         if (instance==null){
             instance = new  Retrofit.Builder()
-                    .baseUrl("http://192.168.1.6:3000/")
+                    .baseUrl("http://192.168.1.10:3000/")
                     .addConverterFactory(GsonConverterFactory.create())
                     //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

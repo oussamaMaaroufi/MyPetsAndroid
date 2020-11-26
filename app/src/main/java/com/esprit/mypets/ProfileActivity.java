@@ -14,13 +14,15 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText phone,addres;
     private Button save,btnuplode;
     private TextView messageText;
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
+        btnuplode = findViewById(R.id.uplodeimage);
 
         btnuplode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }).start();
             }
         });
-            }
 
 
+    }
 }

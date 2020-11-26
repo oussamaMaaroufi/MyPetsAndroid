@@ -1,5 +1,6 @@
 package com.esprit.mypets.Retrofit;
 
+import com.esprit.mypets.entity.Veterinaires;
 import com.esprit.mypets.entity.Volontaires;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
 
@@ -11,8 +12,8 @@ public interface IServiseVolontaires {
 
 
     @POST("volontaire/add")
-    Call<VolontairesResponse> registerUser(@Body Volontaires volontaires);
+    Call<VolontairesResponse> registerVeterinaires(@Body Veterinaires volontaires);
 
     @POST("volontaire/get")
-    Call<VolontairesResponse> GetAnimalbyId(@Body Volontaires volontaires);
+    Call<VolontairesResponse> GetVeterinairesbyId(@Body Volontaires volontaires);
 }
