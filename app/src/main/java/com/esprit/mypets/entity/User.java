@@ -8,6 +8,7 @@ public class User {
     private TypeUser type;
 
     public User( ) {
+        id="0";
     }
 
     public User(String name, String email, String password, TypeUser type) {
@@ -60,5 +61,16 @@ public class User {
 
     public void setType(TypeUser type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", type=" + type +
+                '}';
     }
 }

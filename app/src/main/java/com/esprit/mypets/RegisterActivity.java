@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        register = findViewById(R.id.btnRegister);
+        register = findViewById(R.id.btnSignUp);
         name = findViewById(R.id.txtName);
         email = findViewById(R.id.TxtEmailRegister);
         password = findViewById(R.id.txtPwdRegister);
@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,"name cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }
                 user.setName(name.getText().toString());
-
+/*
               int butceck =  radioGroup.getCheckedRadioButtonId();
                 switch (butceck){
                     case R.id.RadioButton1 : user.setType(TypeUser.Volontaires);break;
@@ -72,6 +72,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if (user.getType()!= null){
                     RegisterUser(user);
                 }
+                */
+                user.setType(TypeUser.Abris);
+                RegisterUser(user);
             }
         });
     }
@@ -80,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
     private  void RegisterUser(User user){
 
         try {
-
+            Toast.makeText(RegisterActivity.this, user.toString(), Toast.LENGTH_SHORT).show();
             Call<UserResponse> call = iMyServiece.registerUser(user);
             call.enqueue(new Callback<UserResponse>() {
                 @Override
