@@ -17,8 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_gravity="center"
+                android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:src="@mipmap/ic_logo_foreground" />
@@ -104,25 +103,21 @@
 
                 <RadioGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/RGroup">
+                    android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/RadioButton1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Volunteer"
                         android:textColor="@color/white"/>
 
                     <RadioButton
-                        android:id="@+id/RadioButton2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Shelter"
                         android:textColor="@color/white"/>
 
                     <RadioButton
-                        android:id="@+id/RadioButton3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Veterinary"

@@ -44,8 +44,7 @@
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF" />
     <TextView
-    android:id="@+id/ErrorSignIn"
-    android:layout_width="match_parent"
+        android:layout_width="match_parent"
     android:layout_height="wrap_content"></TextView>
     <Button
         android:id="@+id/btnSignIn"
