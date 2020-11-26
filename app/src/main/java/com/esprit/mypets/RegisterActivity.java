@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
 
                 User user = new User();
 
@@ -69,13 +70,16 @@ public class RegisterActivity extends AppCompatActivity {
                     default:  Toast.makeText(RegisterActivity.this,"Role cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }
 
-              */
+
                 user.setType(TypeUser.Veterinaires);
 
 
 
                     RegisterUser(user);
+*/
+                Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
 
+                startActivity(intent);
             }
         });
 
