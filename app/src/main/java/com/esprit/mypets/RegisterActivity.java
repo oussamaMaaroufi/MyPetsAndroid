@@ -84,7 +84,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private  void RegisterUser(User user){
+        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
 
+        startActivity(intent);
+
+        /*
         try {
             Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
 
@@ -98,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     UserResponse userResponse =response.body();
                     if (userResponse.getSuccess().equals("true")){
-                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
 
                         startActivity(intent);
 
@@ -115,6 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
+         */
 
 
 

@@ -9,12 +9,13 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-
+<!--
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
             android:backgroundTint="@color/buttonColor"
             android:padding="20dp">
 
+
             <ImageView
                 android:id="@+id/ajouterImg"
                 android:layout_width="wrap_content"
@@ -30,10 +32,70 @@
                 android:src="@drawable/ic_launcher_foreground" />
 
         </FrameLayout>
+        -->
+
+        <TextView
+            android:id="@+id/ProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeMinTextSize="20dp"
+            android:text="UserName"
+            app:autoSizeMinTextSize="25dp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
 
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Address"
+            android:layout_margin="20dp"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="321dp" />
 
+        <EditText
+            android:layout_margin="20dp"
+            android:id="@+id/editTextPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="phone Number"
+            android:inputType="phone"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+        <Button
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click To Upload File"
+            android:id="@+id/uplodeimage"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/messageText"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/ProfilSave"
+            android:layout_margin="20dp"
+            android:text="save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
