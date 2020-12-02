@@ -12,6 +12,9 @@ import android.widget.Toast;
 public class HomeActivity extends AppCompatActivity {
     private TextView Name,email;
 
+   // final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref1", 0); // 0 - for private mode
+    //final SharedPreferences.Editor editor = pref.edit();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Name.setText(Vars.getUSER().getName());
         email.setText(Vars.getUSER().getEmail());
+
+
 
 
 

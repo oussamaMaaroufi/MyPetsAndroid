@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/gray"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 <ScrollView
@@ -30,8 +30,8 @@
         android:ems="20"
         android:hint="  Email"
         android:inputType="textWebEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
 
     <EditText
@@ -41,12 +41,13 @@
         android:ems="20"
         android:hint="  Password"
         android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
     <TextView
-    android:id="@+id/ErrorSignIn"
-    android:layout_width="match_parent"
+        android:layout_width="match_parent"
     android:layout_height="wrap_content"></TextView>
+
     <Button
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
@@ -63,7 +64,7 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="Login with Google"
-        app:backgroundTint="@color/gray"
+        app:backgroundTint="@color/buttonColor"
         android:textColor="@color/black"/>
 
     <Button
@@ -73,7 +74,7 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="Register "
-        app:backgroundTint="@color/gray"
+        app:backgroundTint="@color/buttonColor"
         android:textColor="@color/black"
         />
 </LinearLayout>
