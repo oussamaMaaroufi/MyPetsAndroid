@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,15 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="2"
-        tools:ignore="MissingConstraints">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageAniamlHome"
             android:layout_width="198dp"
             android:layout_height="139dp"
-            android:layout_weight="1"
             android:src="@mipmap/ic_logo_round" />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,7 +27,7 @@
                 android:id="@+id/nameAniamlHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
                 android:gravity="center"
                 android:text="name"
                 android:textIsSelectable="true"
@@ -40,7 +37,6 @@
                 android:id="@+id/raceAnimalHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="name"
                 android:textIsSelectable="true"
@@ -50,4 +46,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

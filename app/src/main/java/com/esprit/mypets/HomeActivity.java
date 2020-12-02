@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +33,10 @@ import retrofit2.Retrofit;
 public class HomeActivity extends AppCompatActivity {
     private TextView Name,email;
     RecyclerView recyclerView;
-
+    Button btnAffich ;
     MyAdapterAnimal myAdapterAnimal;
 
-    ArrayList<Animal> animals = new ArrayList<>();
+     ArrayList<Animal> animals = new ArrayList<>();
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
 
@@ -45,16 +47,26 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        getAllAnimals();
+        btnAffich = findViewById(R.id.btnAffiche);
         recyclerView = findViewById(R.id.recyclerViewHome);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));
-        animals.add(new Animal("oussama","3arbi","hhhh"));
-        myAdapterAnimal = new MyAdapterAnimal(this, animals);
 
         recyclerView.setAdapter(myAdapterAnimal);
 
-        getAllAnimals();
+
+        btnAffich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), animals);
+                Toast.makeText(HomeActivity.this,  animals.get(1).toString(), Toast.LENGTH_LONG).show();
+
+                recyclerView.setAdapter(myAdapterAnimal);
+            }
+        });
+
+
 
 
 /*
@@ -67,46 +79,48 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<Animal> getAllAnimals(){
-         ArrayList<Animal> list = new ArrayList<Animal>();
+    public void getAllAnimals(){
+        //    ArrayList<Animal> list = new ArrayList<Animal>();
         AnimalResponse animalResponse =new AnimalResponse();
 
-        Call<ArrayList<Animal>> call = iServiseAnimal.GetAllAnimal();
+        Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
 
-        call.enqueue(new Callback<ArrayList<Animal>>() {
+        call.enqueue(new Callback<AnimalResponseList>() {
             @Override
-            public void onResponse(Call<ArrayList<Animal>> call, Response<ArrayList<Animal>> response) {
+            public void onResponse(Call<AnimalResponseList> call, Response<AnimalResponseList> response) {
                 if (!response.isSuccessful()){
                     Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                 } else {
-                 //   ArrayList<Animal> animalResponse = response.body();
-                    Toast.makeText(HomeActivity.this,  response.body().toString(), Toast.LENGTH_SHORT).show();
-                //for (Animal a : animalResponse){
-
-                     //   Toast.makeText(HomeActivity.this,  a.toString(), Toast.LENGTH_SHORT).show();
-                //    }
-
-
-
-                   //   AnimalResponse animalResponse1 =new AnimalResponse();
-                   // animalResponse1.setAnimal(animalResponse.getAnimal().get(0));
-                     // Toast.makeText(HomeActivity.this,  animalResponse.ge, Toast.LENGTH_SHORT).show();
-                     //Toast.makeText(HomeActivity.this,  " "+animalResponse1.getAnimal().getName(), Toast.LENGTH_SHORT).show();
-
-
+                    AnimalResponseList animalResponse = response.body();
+                    animals = animalResponse.getAnimal();
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Animal>> call, Throwable t) {
+            public void onFailure(Call<AnimalResponseList> call, Throwable t) {
 
             }
         });
-        return list;
     }
 
+
+/*
+    public void addElement() {
+        System.out.println("Opening...");
+        synchronized (list) {
+
+            // add an element and notify all that an element exists
+            getAllAnimals();
+            System.out.println("add");
+
+            getAllAnimals().notifyAll();
+            System.out.println("notifyAll called!");
+        }
+        System.out.println("Closing...");
+    }
+*/
 
 
 }

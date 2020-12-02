@@ -1,7 +1,7 @@
 package com.esprit.mypets.entity;
 
 public class Animal {
-    private String id;
+    private String _id;
     private String IdUser;
     private String Type;
     private String Name;
@@ -18,11 +18,11 @@ public class Animal {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getIdUser() {
@@ -63,5 +63,17 @@ public class Animal {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id='" + _id + '\'' +
+                ", IdUser='" + IdUser + '\'' +
+                ", Type='" + Type + '\'' +
+                ", Name='" + Name + '\'' +
+                ", Race='" + Race + '\'' +
+                ", Image='" + Image + '\'' +
+                '}';
     }
 }

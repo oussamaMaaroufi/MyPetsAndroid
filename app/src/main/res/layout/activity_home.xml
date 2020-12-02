@@ -18,6 +18,12 @@
             android:background="@color/buttonColor"
             app:title="Adoption Home" />
 
+        <Button
+            android:id="@+id/btnAffiche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHome"
             android:layout_width="match_parent"
