@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Vars.setUSER(userResponse.getUser());
                             startActivityForResult(intent,1);
+                            finish();
 
                         }
                           Toast.makeText(LoginActivity.this,"Password or Email is not correct", Toast.LENGTH_SHORT).show();
