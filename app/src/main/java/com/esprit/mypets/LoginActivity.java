@@ -100,24 +100,12 @@ public class LoginActivity extends AppCompatActivity {
                         UserResponse userResponse = response.body();
                         if (userResponse.getSuccess().equals("true")) {
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            User u1 = userResponse.getUser();
-                         /*   UserSharedpref userS = new UserSharedpref();
-                            userS.setEmail(u1.getEmail());
-                            userS.setIdUser(u1.getId());
-                            userS.setName(u1.getName());
-                            userS.setType(u1.getType().toString());
-                            database.userDao().insertAll(userS);
-                            editor.commit();
-                            startActivity(intent); */
-                            User user1 = userResponse.getUser();
-                            intent.putExtra("Name",user1.getName());
-                            intent.putExtra("Email",user1.getEmail());
-                            intent.putExtra("Type",user1.getType());
-                            intent.putExtra("Token",userResponse.getToken());
+
+                            Vars.setUSER(userResponse.getUser());
                             startActivityForResult(intent,1);
 
                         }
-                        //  Toast.makeText(LoginActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
+                          Toast.makeText(LoginActivity.this,"Password or Email not correct", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

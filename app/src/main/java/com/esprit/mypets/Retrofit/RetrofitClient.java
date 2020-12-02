@@ -1,5 +1,6 @@
 package com.esprit.mypets.Retrofit;
 
+import com.esprit.mypets.Vars;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import retrofit2.Retrofit;
@@ -14,7 +15,7 @@ public class RetrofitClient {
 
         if (instance==null){
             instance = new  Retrofit.Builder()
-                    .baseUrl("http://192.168.1.10:3000/")
+                    .baseUrl(Vars.getURL())
                     .addConverterFactory(GsonConverterFactory.create())
                     //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
