@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+
+        }
 
         joinUs = findViewById(R.id.joinUs);
         joinUs.setOnClickListener(new View.OnClickListener() {

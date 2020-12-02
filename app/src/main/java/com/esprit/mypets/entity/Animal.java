@@ -5,6 +5,17 @@ public class Animal {
     private String IdUser;
     private String Type;
     private String Name;
+    private String Race;
+    private String Image;
+
+    public Animal(String name, String race, String image) {
+        Name = name;
+        Race = race;
+        Image = image;
+    }
+
+    public Animal() {
+    }
 
     public String getId() {
         return id;
@@ -36,5 +47,21 @@ public class Animal {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getRace() {
+        return Race;
+    }
+
+    public void setRace(String race) {
+        Race = race;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }

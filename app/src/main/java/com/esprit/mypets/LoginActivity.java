@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             User user = new User(email, password);
 
             try {
-                Toast.makeText(LoginActivity.this, email + " " + password, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(LoginActivity.this, email + " " + password, Toast.LENGTH_SHORT).show();
 
                 Call<UserResponse> call = iServieceUser.loginUser(user);
                 call.enqueue(new Callback<UserResponse>() {
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
 
                         }
-                          Toast.makeText(LoginActivity.this,"Password or Email is not correct", Toast.LENGTH_SHORT).show();
+                          Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

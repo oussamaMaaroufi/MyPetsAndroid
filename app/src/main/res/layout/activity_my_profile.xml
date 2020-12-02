@@ -8,6 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -21,20 +22,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/gray">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="56dp"
             tools:srcCompat="@tools:sample/avatars" />
         <TextView
+            android:id="@+id/nameProfile"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/gray"
+            />
+
+        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/posts"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="My Posts"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:id="@+id/aboutMe"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="About Me"
+                android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/photos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="My Photos"
+                android:textColor="@color/black"/>
 
-            />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
