@@ -26,8 +26,6 @@ public class HomeActivity extends AppCompatActivity {
         Name.setText(Vars.getUSER().getName());
         email.setText(Vars.getUSER().getEmail());
 
-          //  Name.setText(pref.getString("name","test0").toString());
-          //  email.setText(pref.getString("email","test0").toString());
 
 
 
