@@ -97,12 +97,13 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     UserResponse userResponse =response.body();
                     if (userResponse.getSuccess().equals("true")){
-                        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
 
                         startActivity(intent);
 
+                    }else {
+                        Toast.makeText(RegisterActivity.this, userResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
-                      Toast.makeText(RegisterActivity.this,userResponse.toString(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -116,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
 
-        Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
 
         startActivity(intent);
 
