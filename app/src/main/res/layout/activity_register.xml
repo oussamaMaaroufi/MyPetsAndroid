@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/gray"
     tools:context=".RegisterActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:text="Create an account"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"/>
 
 
@@ -46,8 +46,8 @@
                     android:ems="20"
                     android:inputType="text"
                     android:hint="Username "
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"/>
 
                 <EditText
                     android:id="@+id/TxtEmailRegister"
@@ -56,8 +56,8 @@
                     android:ems="20"
                     android:inputType="textWebEmailAddress"
                     android:hint="Email "
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"/>
 
 
                 <EditText
@@ -67,8 +67,8 @@
                     android:ems="20"
                     android:inputType="textPassword"
                     android:hint="Password"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"/>
 
                 <EditText
                     android:id="@+id/txtPwdRegisterConf"
@@ -77,8 +77,8 @@
                     android:ems="20"
                     android:inputType="textPassword"
                     android:hint="Confirm password "
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"/>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"/>
 
 
 
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="What is your role? "
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textSize="15dp">
@@ -109,19 +109,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Volunteer"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/black"/>
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Shelter"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/black"/>
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Veterinary"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/black"/>
                 </RadioGroup>
             </LinearLayout>
 

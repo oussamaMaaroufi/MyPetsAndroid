@@ -16,19 +16,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/buttonColor"
-            app:title="Adoption Home"
-            />
-        <TextView
-            android:layout_marginTop="100dp"
-            android:id="@+id/homeName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:title="Adoption Home" />
 
-        <TextView
-
-            android:id="@+id/homeEmail"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:id="@+id/homeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp" />
+
+            <TextView
+
+                android:id="@+id/homeEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
