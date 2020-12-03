@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BarMenu"></activity>
+        <activity android:name=".MyAnimals"></activity>
+        <activity android:name=".BarMenu" />
         <activity android:name=".MyProfile" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />

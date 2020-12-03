@@ -33,7 +33,7 @@ import retrofit2.Retrofit;
 public class HomeActivity extends AppCompatActivity {
     private TextView Name,email;
     RecyclerView recyclerView;
-    Button btnAffich ;
+    Button btnAffich ,btnMyProfil;
     MyAdapterAnimal myAdapterAnimal;
 
      ArrayList<Animal> animals = new ArrayList<>();
@@ -49,11 +49,20 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getAllAnimals();
         btnAffich = findViewById(R.id.btnAffiche);
+        btnMyProfil = findViewById(R.id.Myprofil);
         recyclerView = findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true));
 
 
         recyclerView.setAdapter(myAdapterAnimal);
+
+        btnMyProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(HomeActivity.this,MyProfile.class);
+                startActivity(intent);
+            }
+        });
 
 
         btnAffich.setOnClickListener(new View.OnClickListener() {
