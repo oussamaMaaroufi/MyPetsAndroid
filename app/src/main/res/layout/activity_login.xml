@@ -9,7 +9,8 @@
     tools:context=".LoginActivity">
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,9 +20,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:src="@mipmap/ic_logo_foreground">
+        android:src="@mipmap/ic_logo_foreground"/>
 
-    </ImageView>
+
 
     <EditText
         android:id="@+id/TxtEmail"
@@ -46,7 +47,7 @@
 
     <TextView
         android:layout_width="match_parent"
-    android:layout_height="wrap_content"></TextView>
+    android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnSignIn"

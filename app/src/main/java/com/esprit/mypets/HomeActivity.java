@@ -45,7 +45,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
         recyclerView = findViewById(R.id.recyclerViewHome);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));

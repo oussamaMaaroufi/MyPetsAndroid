@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             this.getSupportActionBar().hide();
         }catch (Exception e){
-
         }
 
         joinUs = findViewById(R.id.joinUs);
