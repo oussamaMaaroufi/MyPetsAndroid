@@ -5,7 +5,7 @@ import com.esprit.mypets.entity.User;
 public class Vars {
 
     private static User USER;
-    private static String URL="http://192.168.1.9:3000/";
+    private static String URL="http://192.168.1.3:3000/";
 
 
     public static User getUSER() {

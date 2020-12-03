@@ -19,7 +19,7 @@ public interface IServiseAnimal {
     Call<AnimalResponse> registerUser(@Body Animal animal);
 
     @POST("animal/get")
-    Call<AnimalResponse> GetAnimalbyId(@Body Animal animal);
+    Call<AnimalResponseList> GetAnimalbyIdUser(@Body String IdUser);
 
     @POST("animal/list")
     Call<AnimalResponseList> GetAllAnimal();
