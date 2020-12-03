@@ -49,7 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
          email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
-
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
      ///   database = AppDatabase.getInstance(this);
 
         //Init service

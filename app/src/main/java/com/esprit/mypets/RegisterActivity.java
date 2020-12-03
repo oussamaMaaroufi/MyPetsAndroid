@@ -41,6 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.txtPwdRegister);
         passwordconf = findViewById(R.id.txtPwdRegisterConf);
 
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
