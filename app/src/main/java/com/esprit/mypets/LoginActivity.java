@@ -98,23 +98,23 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         if (!response.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
 
-                        }
-                        UserResponse userResponse = response.body();
-                        if (userResponse.getSuccess().equals("true")) {
+                        }else {
+                             UserResponse userResponse = response.body();
+                            User user = userResponse.getUser();
+                            Vars.setUSER(user);
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-
-                            Vars.setUSER(userResponse.getUser());
-                            startActivityForResult(intent,1);
+                            startActivity(intent);
                             finish();
 
                         }
-                          Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, call.request() + t.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

@@ -16,6 +16,7 @@ import com.esprit.mypets.R;
 import com.esprit.mypets.entity.Animal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyViewHolder> {
     private Context myContext;

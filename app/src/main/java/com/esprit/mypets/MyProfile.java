@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -20,32 +21,37 @@ public class MyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-        
-        toolbar = findViewById(R.id.toolbar);
+
         imageProfile = findViewById(R.id.imageProfile);
         nameProfile = findViewById(R.id.nameProfile);
-        information = findViewById(R.id.information);
-        aboutMe = findViewById(R.id.aboutMe);
+     //   information = findViewById(R.id.information);
+     //   aboutMe = findViewById(R.id.aboutMe);
         btnMyAnimals = findViewById(R.id.btnMyAnimals);
-        photos = findViewById(R.id.photos);
+      //  photos = findViewById(R.id.photos);
 
         nameProfile.setText(Vars.getUSER().getName());
+
         btnMyAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    Intent intent =new Intent(MyProfile.this,RegisterActivity.class);
+                try {
+                    Intent intent =new Intent(MyProfile.this,MyAnimals.class);
                     startActivity(intent);
+                }catch (Exception e){
+                    Toast.makeText(MyProfile.this,  e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
 
-        information.setText(Vars.getUSER().getEmail()+"\n");
 
 
 
-        try {
-            this.getSupportActionBar().hide();
-        }catch (Exception e){
-        }
+   //     information.setText(Vars.getUSER().getEmail()+"\n");
+
+
+
+
     }
 }

@@ -5,13 +5,13 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private TypeUser type;
+    private String type;
 
     public User( ) {
-        id="0";
+
     }
 
-    public User(String name, String email, String password, TypeUser type) {
+    public User(String name, String email, String password, String type) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -55,13 +55,9 @@ public class User {
         this.password = password;
     }
 
-    public TypeUser getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
-    public void setType(TypeUser type) {
-        this.type = type;
-    }
+    public void setType(String type) { this.type = type;  }
 
     @Override
     public String toString() {

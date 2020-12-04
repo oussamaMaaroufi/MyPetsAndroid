@@ -11,7 +11,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServieceUser;
-import com.esprit.mypets.entity.TypeUser;
 import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.UserResponse;
 
@@ -40,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.TxtEmailRegister);
         password = findViewById(R.id.txtPwdRegister);
         passwordconf = findViewById(R.id.txtPwdRegisterConf);
+
 
         try {
             this.getSupportActionBar().hide();
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setEmail(email.getText().toString());
                     user.setName(name.getText().toString());
                     user.setPassword(password.getText().toString());
-                    user.setType(TypeUser.Veterinaires);
+                    user.setType("Veterinaires");
 
 
                     RegisterUser(user);

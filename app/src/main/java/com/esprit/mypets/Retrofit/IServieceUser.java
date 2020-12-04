@@ -8,6 +8,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface IServieceUser {
+
         @POST("users/register")
         Call<UserResponse> registerUser(@Body User user);
 

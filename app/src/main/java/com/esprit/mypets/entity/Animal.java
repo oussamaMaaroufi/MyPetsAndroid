@@ -1,6 +1,7 @@
 package com.esprit.mypets.entity;
 
 public class Animal {
+
     private String _id;
     private String IdUser;
     private String Type;
