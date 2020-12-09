@@ -12,7 +12,7 @@ public interface IServiseVolontaires {
 
 
     @POST("volontaire/add")
-    Call<VolontairesResponse> registerVeterinaires(@Body Veterinaires volontaires);
+    Call<VolontairesResponse> registerVeterinaires(@Body Volontaires volontaires);
 
     @POST("volontaire/get")
     Call<VolontairesResponse> GetVeterinairesbyId(@Body Volontaires volontaires);

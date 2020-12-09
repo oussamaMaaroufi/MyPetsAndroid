@@ -14,35 +14,31 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-<!--
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/frame"
-            android:backgroundTint="@color/buttonColor"
-            android:padding="20dp">
 
 
+
+<!--+
             <ImageView
                 android:id="@+id/ajouterImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_foreground" />
-
-        </FrameLayout>
+                android:src="@mipmap/ic_logo_foreground" />
         -->
 
 
+
+
         <TextView
+            android:id="@+id/nameCreateProfile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoSizeMinTextSize="20dp"
+            android:layout_height="match_parent"
+            android:autoSizeMinTextSize="30dp"
             android:text="UserName"
-            app:autoSizeMinTextSize="25dp" />
+            app:autoSizeMinTextSize="40dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

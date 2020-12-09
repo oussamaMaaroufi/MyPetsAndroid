@@ -11,22 +11,25 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServieceUser;
+import com.esprit.mypets.Retrofit.IServiseAnimal;
+import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity {
 
 
-    private IServieceUser iServieceUser;
+
     private Button register;
     private EditText email,name,password,passwordconf;
     private RadioGroup radioGroup;
-
-
+    private IServieceUser iServieceUser ;
+    private Retrofit retrofit = RetrofitClient.getInstance();
 
 
     @Override
@@ -39,7 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.TxtEmailRegister);
         password = findViewById(R.id.txtPwdRegister);
         passwordconf = findViewById(R.id.txtPwdRegisterConf);
-
+        iServieceUser = retrofit.create(IServieceUser.class);
+        radioGroup = findViewById(R.id.RadioGroupeReg);
 
         try {
             this.getSupportActionBar().hide();
@@ -52,29 +56,37 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 User user = new User();
+                boolean b = false;
 
                 if(email.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }else if(password.getText().toString().isEmpty()){
+
                     Toast.makeText(RegisterActivity.this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
                 }else  if(name.getText().toString().isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "name cannot be null or empyt", Toast.LENGTH_SHORT).show();
-                }else {
-              /*  }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton1){
-                    user.setType(TypeUser.Volontaires);
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton2){
-                    user.setType(TypeUser.Abris);
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.RadioButton3){
-                    user.setType(TypeUser.Veterinaires);
-                }
 
-               */
+                    Toast.makeText(RegisterActivity.this, "name cannot be null or empyt", Toast.LENGTH_SHORT).show();
+                }else if (radioGroup.getCheckedRadioButtonId() == R.id.RadioButton1) {
+                    b= true;
+                        user.setType("Volontaires");
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.RadioButton2) {
+                    b= true;
+                        user.setType("Abris");
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.RadioButton3) {
+                    b= true;
+                        user.setType("Veterinaires");
+                }
+                if(!b) {
+                    Toast.makeText(RegisterActivity.this, "Role cannot be null or empyt", Toast.LENGTH_SHORT).show();
+                }else
+                {
+
                     user.setEmail(email.getText().toString());
                     user.setName(name.getText().toString());
                     user.setPassword(password.getText().toString());
-                    user.setType("Veterinaires");
 
 
+                 //   Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
                     RegisterUser(user);
                 }
 
@@ -89,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         try {
-            Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(RegisterActivity.this,user.toString(),Toast.LENGTH_SHORT).show();
 
             Call<UserResponse> call = iServieceUser.registerUser(user);
             call.enqueue(new Callback<UserResponse>() {
@@ -101,6 +113,10 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     UserResponse userResponse =response.body();
                     if (userResponse.getSuccess().equals("true")){
+
+                        Vars.setUSER(userResponse.getUser());
+                        Toast.makeText(RegisterActivity.this, "Vars.user"+Vars.getUSER(), Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
 
                         startActivity(intent);
@@ -114,16 +130,12 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onFailure(Call<UserResponse> call, Throwable t) {
                     Toast.makeText(RegisterActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+
             });
 
         }catch (Exception e){
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
-        Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
-
-        startActivity(intent);
 
 
 

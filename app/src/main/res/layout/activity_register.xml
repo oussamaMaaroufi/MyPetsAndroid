@@ -102,22 +102,26 @@
                 android:orientation="vertical">
 
                 <RadioGroup
+                    android:id="@+id/RadioGroupeReg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <RadioButton
+                        android:id="@+id/RadioButton1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Volunteer"
                         android:textColor="@color/black"/>
 
                     <RadioButton
+                        android:id="@+id/RadioButton2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="A Shelter"
                         android:textColor="@color/black"/>
 
                     <RadioButton
+                        android:id="@+id/RadioButton3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Veterinary"

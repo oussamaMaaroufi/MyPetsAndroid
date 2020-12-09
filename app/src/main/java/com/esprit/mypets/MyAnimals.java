@@ -49,11 +49,14 @@ public class MyAnimals extends AppCompatActivity {
         btnAfficheMyAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(MyAnimals.this, animals.get(0).toString(), Toast.LENGTH_SHORT).show();
                 myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(),  animals);
 
                 recyclerView.setAdapter(myAdapterAnimal);
             }
         });
+
         btnAddAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
