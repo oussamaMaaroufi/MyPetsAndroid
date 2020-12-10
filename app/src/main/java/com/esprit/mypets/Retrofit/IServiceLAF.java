@@ -5,12 +5,13 @@ import com.esprit.mypets.entyityResponse.LostFoundResponse;
 import com.esprit.mypets.entyityResponse.LostFoundResponseList;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface IServiceLAF {
 
     @POST("lostAndFound/add")
-    Call<LostFoundResponse> AddlostAndfound(LostAndFound lostAndFound);
+    Call<LostFoundResponse> AddlostAndfound(@Body LostAndFound lostAndFound);
 
     @POST("lostAndFound/getLost")
     Call<LostFoundResponseList> GetAllLost();
