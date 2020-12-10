@@ -34,6 +34,11 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
         }
 
     }
+    public void updateData(ArrayList<Animal> viewModels) {
+        animals.clear();
+        animals.addAll(viewModels);
+        notifyDataSetChanged();
+    }
 
     public MyAdapterAnimal(Context myContext, ArrayList<Animal> animals) {
         this.myContext = myContext;

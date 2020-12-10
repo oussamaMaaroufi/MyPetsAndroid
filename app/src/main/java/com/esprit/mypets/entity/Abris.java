@@ -1,21 +1,21 @@
 package com.esprit.mypets.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-public class Abris extends User {
-
+public class Abris {
     private String id;
     private String IdUser;
     private String Adresse;
     private String telephon;
     private String image;
 
-    @Override
+
     public String getId() {
         return id;
     }
 
-    @Override
     public void setId(String id) {
         this.id = id;
     }

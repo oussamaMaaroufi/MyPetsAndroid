@@ -25,4 +25,7 @@ public interface IServiseAnimal {
     @POST("animal/list")
     Call<AnimalResponseList> GetAllAnimal();
 
+    @POST("animal//delete")
+    Call<AnimalResponse> DeleteAnimal(@Body Animal animal);
+
 }

@@ -15,6 +15,6 @@ public interface IServeceAbri {
     @POST("abri/add")
     Call<AbriResponse> registerAbri(@Body Abris abris);
 
-    @POST("abri/get")
+    @POST("abri/auth")
     Call<AbriResponse> GetAbrilbyId(@Body Abris abris);
 }

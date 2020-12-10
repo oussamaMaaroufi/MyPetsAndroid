@@ -1,7 +1,7 @@
 package com.esprit.mypets.entity;
 
 public class User {
-    private String id;
+    private String _id;
     private String name;
     private String email;
     private String password;
@@ -24,11 +24,11 @@ public class User {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName() {
@@ -62,7 +62,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id='" + _id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

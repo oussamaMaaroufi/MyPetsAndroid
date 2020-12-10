@@ -2,7 +2,7 @@ package com.esprit.mypets.entity;
 
 import java.util.List;
 
-public class Volontaires extends User{
+public class Volontaires {
 
     private String id;
     private String IdUser;
@@ -10,12 +10,12 @@ public class Volontaires extends User{
     private String telephon;
     private String image;
 
-    @Override
+
     public String getId() {
         return id;
     }
 
-    @Override
+
     public void setId(String id) {
         this.id = id;
     }

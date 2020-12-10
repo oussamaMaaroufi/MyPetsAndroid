@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.esprit.mypets.entity.Animal;
+import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.AnimalResponseList;
 
@@ -64,7 +65,8 @@ public class AddAnimal extends AppCompatActivity {
                     animal.setType(type);
                     animal.setRace(race.getText().toString());
                     animal.setName(name.getText().toString());
-                    animal.setIdUser(Vars.getUSER().getId());
+                    User u =(User) Vars.getUSER();
+                    animal.setIdUser( u.getId());
 
                     Call<AnimalResponse> call  = iServiseAnimal.AddAnimal(animal);
                     call.enqueue(new Callback<AnimalResponse>() {
@@ -74,7 +76,8 @@ public class AddAnimal extends AppCompatActivity {
                                 Toast.makeText(AddAnimal.this, "Error ", Toast.LENGTH_SHORT).show();
                             } else {
                                   Toast.makeText(AddAnimal.this,  response.body().getAnimal().toString()  , Toast.LENGTH_SHORT).show();
-                                  Intent intent =new Intent(AddAnimal.this,HomeActivity.class);
+                                  Intent intent =new Intent(AddAnimal.this,MyAnimals.class);
+                                  MyAnimals.getAllAnimals(iServiseAnimal);
                                   startActivity(intent);
                             }
 

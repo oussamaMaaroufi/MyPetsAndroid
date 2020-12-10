@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     Button btnAffich ,btnMyProfil;
     MyAdapterAnimal myAdapterAnimal;
 
-     ArrayList<Animal> animals = null;
+    public static ArrayList<Animal> animals = new ArrayList<Animal>();
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
 
@@ -47,12 +47,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         try {
-            User u = Vars.getUSER();
+            User u =(User) Vars.getUSER();
             Toast.makeText(HomeActivity.this, u.toString(), Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(HomeActivity.this,  e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
+
+      /*  Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
 
         call.enqueue(new Callback<AnimalResponseList>() {
             @Override
@@ -73,14 +74,15 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
         btnAffich = findViewById(R.id.btnAffiche);
         btnMyProfil = findViewById(R.id.Myprofil);
         recyclerView = findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-
-
+        if(!HomeActivity.animals.isEmpty()) {
+          myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), HomeActivity.animals);
+         }
         recyclerView.setAdapter(myAdapterAnimal);
 
         btnMyProfil.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
         btnAffich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), animals);
+                myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), HomeActivity.animals);
            //     Toast.makeText(HomeActivity.this, Vars.USER.getName(), Toast.LENGTH_LONG).show();
 
                 recyclerView.setAdapter(myAdapterAnimal);
@@ -122,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void getAllAnimals(){
+    public static void getAllAnimals(IServiseAnimal iServiseAnimal){
         //    ArrayList<Animal> list = new ArrayList<Animal>();
         AnimalResponse animalResponse =new AnimalResponse();
 
@@ -132,9 +134,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AnimalResponseList> call, Response<AnimalResponseList> response) {
                 if (!response.isSuccessful()){
-                    Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(HomeActivity.this,  response.body().getAnimal().get(0).toString()     , Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(HomeActivity.this,  response.body().getAnimal().get(0).toString()     , Toast.LENGTH_SHORT).show();
                     animals = response.body().getAnimal();
 
 

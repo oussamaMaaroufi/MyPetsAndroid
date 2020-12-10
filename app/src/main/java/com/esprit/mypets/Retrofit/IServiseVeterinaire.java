@@ -13,6 +13,6 @@ public interface IServiseVeterinaire {
     @POST("veterinaires/add")
     Call<VeterinairesResponse> registerVeterinaires(@Body Veterinaires veterinaires);
 
-    @POST("veterinaires/get")
+    @POST("veterinaires/auth")
     Call<VeterinairesResponse> GetVeterinairesById(@Body Veterinaires veterinaires);
 }

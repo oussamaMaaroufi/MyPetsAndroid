@@ -12,17 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
         <TextView
+            android:id="@+id/nameCreateProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoSizeMinTextSize="20dp"
             android:text="UserName"
-            app:autoSizeMinTextSize="25dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:autoSizeMinTextSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -30,10 +33,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="-16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ems="10"
+            android:id="@+id/addressCreateProfil"
             android:hint="Address"
             android:inputType="textPersonName"
             tools:layout_editor_absoluteX="50dp"
@@ -66,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ems="10"
+            android:id="@+id/phoneCreateprofil"
             android:hint="phone Number"
             android:inputType="phone"
             tools:layout_editor_absoluteX="50dp"
@@ -74,10 +79,10 @@
         <ImageView
             android:id="@+id/IdProf"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:src="@drawable/ic_menu_gallery"
+            android:layout_height="200dp"
             android:layout_marginTop="10dp"
-            android:backgroundTintMode="@color/gray"/>
+            android:backgroundTintMode="@color/gray"
+            android:src="@drawable/ic_menu_gallery" />
 
         <Button
             android:id="@+id/uplodeimage"

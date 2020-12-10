@@ -48,11 +48,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        name = findViewById(R.id.nameCreateProfil);
+        phone = findViewById(R.id.phoneCreateprofil);
+        addres =findViewById(R.id.addressCreateProfil);
         save = findViewById(R.id.ProfilSave);
-        name = findViewById(R.id.nameCreateProfile);
-        user = Vars.getUSER();
+        user =(User) Vars.getUSER();
         name.setText(user.getName());
-
         Toast.makeText(ProfileActivity.this, "Welcome " + Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
 
 
@@ -146,9 +147,8 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                     VolontairesResponse volontairesResponse =response.body();
                     if (volontairesResponse.getSuccess().equals("true")){
-                        volontaires.setEmail(user.getEmail());
-                        volontaires.setName(user.getName());
-                        Vars.setUSER(volontaires);
+                        Vars.setAddress(addres.getText().toString());
+                        Vars.setPhone(phone.getText().toString());
                     }else {
                         Toast.makeText(ProfileActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -177,9 +177,8 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                     AbriResponse abriResponse =response.body();
                     if (abriResponse.getSuccess().equals("true")){
-                        abris.setEmail(user.getEmail());
-                        abris.setName(user.getName());
-                        Vars.setUSER(abris);
+                        Vars.setAddress(addres.getText().toString());
+                        Vars.setPhone(phone.getText().toString());
 
                     }else {
                         Toast.makeText(ProfileActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
@@ -209,9 +208,8 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                     VeterinairesResponse veterinairesResponse =response.body();
                     if (veterinairesResponse.getSuccess().equals("true")){
-                        veterinaires.setEmail(user.getEmail());
-                        veterinaires.setName(user.getName());
-                        Vars.setUSER(veterinaires);
+                        Vars.setAddress(addres.getText().toString());
+                        Vars.setPhone(phone.getText().toString());
                     }else {
                         Toast.makeText(ProfileActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
