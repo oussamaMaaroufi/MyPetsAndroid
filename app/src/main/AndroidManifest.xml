@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddAnimal"></activity>
+        <activity android:name=".LostAndFound"></activity>
+        <activity android:name=".Adoption" />
+        <activity android:name=".AddAnimal" />
         <activity android:name=".MyAnimals" />
         <activity android:name=".MyProfile" />
         <activity android:name=".HomeActivity" />

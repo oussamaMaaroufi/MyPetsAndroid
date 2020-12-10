@@ -15,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esprit.mypets.AddAnimal;
 import com.esprit.mypets.HomeActivity;
+import com.esprit.mypets.LoginActivity;
+import com.esprit.mypets.MainActivity;
 import com.esprit.mypets.MyAnimals;
 import com.esprit.mypets.R;
 import com.esprit.mypets.Vars;
+import com.esprit.mypets.entity.Adoption;
 import com.esprit.mypets.entity.Animal;
 import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
@@ -87,6 +90,14 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
         holder.adoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent =new Intent(myContext, Adoption.class);
+                intent.putExtra("Name",animal.getName());
+                intent.putExtra("id",animal.getId());
+                intent.putExtra("Race",animal.getRace());
+                intent.putExtra("Type",animal.getType());
+                intent.putExtra("image",animal.getImage());
+                intent.putExtra("IdUser",animal.getIdUser());
+                myContext.startActivity(intent);
 
             }
         });
