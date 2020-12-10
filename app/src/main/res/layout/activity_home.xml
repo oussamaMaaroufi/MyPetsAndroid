@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/btnAffiche"
@@ -33,10 +32,19 @@
                 android:layout_height="wrap_content"
                 android:text="load List" />
             <Button
+
+                android:layout_marginRight="10dp"
                 android:id="@+id/Myprofil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Profil" />
+            <Button
+
+                android:id="@+id/LostAndfound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Profil" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
