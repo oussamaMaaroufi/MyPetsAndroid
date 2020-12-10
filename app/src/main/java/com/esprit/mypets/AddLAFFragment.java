@@ -10,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceLAF;
-import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.esprit.mypets.entity.LostAndFound;
-import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.LostFoundResponse;
 
 import retrofit2.Call;
@@ -35,8 +34,9 @@ public class AddLAFFragment extends Fragment {
     private TextView Desc;
     private Button save,Uplode;
     private RadioButton lost,found;
+    private RadioGroup radioGroup;
     Retrofit retrofitClient = RetrofitClient.getInstance();
-    IServiceLAF iServiceLAF =retrofitClient.create(IServiceLAF.class);
+
 
 
 
@@ -80,80 +80,100 @@ public class AddLAFFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    boolean b = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        IServiceLAF iServiceLAF =retrofitClient.create(IServiceLAF.class);
         View v = inflater.inflate(R.layout.fragment_add_l_a_f, container, false);
-        boolean b =true;
+
         Desc = v.findViewById(R.id.TxtDesc);
         save = v.findViewById(R.id.SaveLAF);
         Uplode = v.findViewById(R.id.uplodeimageLAF);
         lost = v.findViewById(R.id.AddLAFLost);
         found =v.findViewById(R.id.AddLAFFound);
+        radioGroup = v.findViewById(R.id.RadioGroupeLAF);
 
-        LostAndFound lostAndFound = new LostAndFound();
-        lostAndFound.setIdUser(Vars.getUSER().getId());
-        lostAndFound.setUserName(Vars.getUSER().getName());
-        if(lost.isSelected()){
-            lostAndFound.setType("Lost");
-        }else if(found.isSelected()){
-            lostAndFound.setType("Found");
-        }else{
-            b=false;
-            Toast.makeText(v.getContext(),"type is required",Toast.LENGTH_LONG);
-        }
+        Uplode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"test",Toast.LENGTH_LONG);
+            }
+        });
 
-        if(!Desc.getText().toString().isEmpty()){
-            lostAndFound.setDesc(Desc.getText().toString());
-        }else {
-            lostAndFound.setDesc("");
-        }
 
-        if(b){
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             //   Toast.makeText(getActivity(),"test",Toast.LENGTH_LONG);
 
-            Call<LostFoundResponse> call  = iServiceLAF.AddlostAndfound(lostAndFound);
-            call.enqueue(new Callback<LostFoundResponse>() {
-                @Override
-                public void onResponse(Call<LostFoundResponse> call, Response<LostFoundResponse> response) {
-                    if (!response.isSuccessful()){
-                        Toast.makeText(getContext(), "Error ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(),  response.body().getLostAndFound().toString() , Toast.LENGTH_SHORT).show();
-                        if(response.body().getSuccess().equals("true")) {
-                            if (lost.isSelected()) {
-                                LostFragment.getAllLost(iServiceLAF);
-                                LostFragment f = new LostFragment();
-                                getActivity().getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.fragmentsContainer, f)
-                                        .commit();
-                            } else if (found.isSelected()) {
-                                FoundFragment.getAllFound(iServiceLAF);
-                                FoundFragment f = new FoundFragment();
-                                getActivity().getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.fragmentsContainer, f)
-                                        .commit();
+                LostAndFound lostAndFound = new LostAndFound();
+                lostAndFound.setIdUser(Vars.getUSER().getId());
+                lostAndFound.setUserName(Vars.getUSER().getName());
+             //   Toast.makeText(getActivity(),lostAndFound.toString(),Toast.LENGTH_LONG);
+                if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFLost){
+                  //  lostAndFound.setType("Lost");
+                }else if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFFound){
+                 //   lostAndFound.setType("Found");
+                }else{
+                    b = false;
+                    Toast.makeText(v.getContext(),"type is required",Toast.LENGTH_LONG);
+                }
+
+                if(!Desc.getText().toString().isEmpty()){
+                    lostAndFound.setDesc(Desc.getText().toString());
+                }else {
+                    lostAndFound.setDesc("");
+                }
+
+
+                if(b){
+
+                    Call<LostFoundResponse> call  = iServiceLAF.AddlostAndfound(lostAndFound);
+                    call.enqueue(new Callback<LostFoundResponse>() {
+                        @Override
+                        public void onResponse(Call<LostFoundResponse> call, Response<LostFoundResponse> response) {
+                            System.out.println(response.body());
+                            if (!response.isSuccessful()){
+                            //    Toast.makeText(getContext(), "Error ", Toast.LENGTH_SHORT).show();
+                            } else {
+                          //      Toast.makeText(getActivity(),  response.body().getLostAndFound().toString() , Toast.LENGTH_SHORT).show();
+                             //   if(response.body().getSuccess().equals("true")) {
+                                    if (radioGroup.getCheckedRadioButtonId()== R.id.AddLAFLost) {
+                                        LostFragment.getAllLost(iServiceLAF);
+                                        LostFragment f = new LostFragment();
+                                        getActivity().getSupportFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.fragmentsContainer, f)
+                                                .commit();
+                                    } else if (radioGroup.getCheckedRadioButtonId()== R.id.AddLAFFound) {
+                                        FoundFragment.getAllFound(iServiceLAF);
+                                        FoundFragment f = new FoundFragment();
+                                        getActivity().getSupportFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.fragmentsContainer, f)
+                                                .commit();
+                                   // }
+
+                                }
+
+
                             }
 
                         }
 
+                        @Override
+                        public void onFailure(Call<LostFoundResponse> call, Throwable t) {
+                            System.out.println(t.getMessage());
+                        }
+                    });
 
-                    }
 
                 }
 
-                @Override
-                public void onFailure(Call<LostFoundResponse> call, Throwable t) {
-
-                }
-            });
-
-
-        }
+            }
+        });
 
 
 

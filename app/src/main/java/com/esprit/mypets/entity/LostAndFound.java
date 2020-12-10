@@ -2,13 +2,11 @@ package com.esprit.mypets.entity;
 
 public class LostAndFound {
     private String _id;
-    private String IdAnimal;
     private String IdUser;
     private String UserName;
     private String Desc;
     private String Type;
     private String Image;
-
 
     public String get_id() {
         return _id;
@@ -16,14 +14,6 @@ public class LostAndFound {
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public String getIdAnimal() {
-        return IdAnimal;
-    }
-
-    public void setIdAnimal(String idAnimal) {
-        IdAnimal = idAnimal;
     }
 
     public String getIdUser() {
@@ -34,17 +24,12 @@ public class LostAndFound {
         IdUser = idUser;
     }
 
-    public String getUserName() { return UserName; }
-
-    public void setUserName(String UserName) { this.UserName = UserName; }
-
-
-    public String getType() {
-        return Type;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setType(String type) {
-        Type = type;
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 
     public String getDesc() {
@@ -53,6 +38,14 @@ public class LostAndFound {
 
     public void setDesc(String desc) {
         Desc = desc;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getImage() {
@@ -67,11 +60,11 @@ public class LostAndFound {
     public String toString() {
         return "LostAndFound{" +
                 "_id='" + _id + '\'' +
-                ", IdAnimal='" + IdAnimal + '\'' +
                 ", IdUser='" + IdUser + '\'' +
                 ", UserName='" + UserName + '\'' +
                 ", Desc='" + Desc + '\'' +
-                ", Type=" + Type +
+                ", Type='" + Type + '\'' +
+                ", Image='" + Image + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 package com.esprit.mypets.entyityResponse;
 
-import com.esprit.mypets.LostAndFound;
-import com.esprit.mypets.entity.Adoption;
+
+import com.esprit.mypets.entity.LostAndFound;
 
 public class LostFoundResponse {
     private String success;
@@ -24,11 +24,11 @@ public class LostFoundResponse {
         this.message = message;
     }
 
-    public com.esprit.mypets.LostAndFound getLostAndFound() {
+    public LostAndFound getLostAndFound() {
         return LostAndFound;
     }
 
-    public void setLostAndFound(com.esprit.mypets.LostAndFound lostAndFound) {
+    public void setLostAndFound(LostAndFound lostAndFound) {
         LostAndFound = lostAndFound;
     }
 
