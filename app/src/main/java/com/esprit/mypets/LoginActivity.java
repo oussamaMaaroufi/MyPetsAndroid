@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                              UserResponse userResponse = response.body();
                             User user = userResponse.getUser();
                             Vars.setUSER(user);
+                            Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
                             if (user.getType().equals("Volontaires")) {
                                 iServiseVolontaires = retrofit.create(IServiseVolontaires.class);
                                 Volontaires volontaires = new Volontaires();

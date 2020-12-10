@@ -1,49 +1,77 @@
 package com.esprit.mypets.entity;
 
 public class LostAndFound {
-    private String id;
-    private Animal animal;
-    private Volontaires volontaires;
-    private String Description;
-    private LostFound Type;
+    private String _id;
+    private String IdAnimal;
+    private String IdUser;
+    private String UserName;
+    private String Desc;
+    private String Type;
+    private String Image;
 
-    public String getId() {
-        return id;
+
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public Animal getAnimal() {
-        return animal;
+    public String getIdAnimal() {
+        return IdAnimal;
     }
 
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setIdAnimal(String idAnimal) {
+        IdAnimal = idAnimal;
     }
 
-    public Volontaires getVolontaires() {
-        return volontaires;
+    public String getIdUser() {
+        return IdUser;
     }
 
-    public void setVolontaires(Volontaires volontaires) {
-        this.volontaires = volontaires;
+    public void setIdUser(String idUser) {
+        IdUser = idUser;
     }
 
-    public String getDescription() {
-        return Description;
-    }
+    public String getUserName() { return UserName; }
 
-    public void setDescription(String description) {
-        Description = description;
-    }
+    public void setUserName(String UserName) { this.UserName = UserName; }
 
-    public LostFound getType() {
+
+    public String getType() {
         return Type;
     }
 
-    public void setType(LostFound type) {
+    public void setType(String type) {
         Type = type;
+    }
+
+    public String getDesc() {
+        return Desc;
+    }
+
+    public void setDesc(String desc) {
+        Desc = desc;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "LostAndFound{" +
+                "_id='" + _id + '\'' +
+                ", IdAnimal='" + IdAnimal + '\'' +
+                ", IdUser='" + IdUser + '\'' +
+                ", UserName='" + UserName + '\'' +
+                ", Desc='" + Desc + '\'' +
+                ", Type=" + Type +
+                '}';
     }
 }

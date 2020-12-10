@@ -40,17 +40,18 @@
                 android:text="My Profil" />
             <Button
 
-                android:id="@+id/LostAndfound"
+                android:id="@+id/btnLostAndfound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My Profil" />
+                android:textSize="10dp"
+                android:text="LOst And Found" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:background="@color/gray"
 
