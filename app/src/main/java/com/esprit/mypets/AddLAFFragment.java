@@ -113,9 +113,9 @@ public class AddLAFFragment extends Fragment {
                 lostAndFound.setUserName(Vars.getUSER().getName());
              //   Toast.makeText(getActivity(),lostAndFound.toString(),Toast.LENGTH_LONG);
                 if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFLost){
-                  //  lostAndFound.setType("Lost");
+                    lostAndFound.setType("Lost");
                 }else if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFFound){
-                 //   lostAndFound.setType("Found");
+                    lostAndFound.setType("Found");
                 }else{
                     b = false;
                     Toast.makeText(v.getContext(),"type is required",Toast.LENGTH_LONG);
