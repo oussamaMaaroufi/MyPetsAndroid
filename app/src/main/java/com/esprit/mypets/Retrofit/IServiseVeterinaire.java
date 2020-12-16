@@ -10,9 +10,9 @@ import retrofit2.http.POST;
 public interface IServiseVeterinaire {
 
 
-    @POST("veterinaires/add")
+    @POST("veterinaire/add")
     Call<VeterinairesResponse> registerVeterinaires(@Body Veterinaires veterinaires);
 
-    @POST("veterinaires/auth")
+    @POST("veterinaire/auth")
     Call<VeterinairesResponse> GetVeterinairesById(@Body Veterinaires veterinaires);
 }

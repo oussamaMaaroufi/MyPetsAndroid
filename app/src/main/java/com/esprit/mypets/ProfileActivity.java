@@ -1,13 +1,19 @@
 package com.esprit.mypets;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +31,9 @@ import com.esprit.mypets.entyityResponse.UserResponse;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,12 +45,12 @@ public class ProfileActivity extends AppCompatActivity {
     private Button save,btnuplode;
     private TextView messageText,name;
     private ProgressDialog dialog;
-
     private IServeceAbri iServeceAbri;
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
     private User user;
+    private ImageView imgprofil;
 
         @Override
         protected void onCreate (Bundle savedInstanceState){
@@ -54,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         save = findViewById(R.id.ProfilSave);
         user =(User) Vars.getUSER();
         name.setText(user.getName());
+        imgprofil = findViewById(R.id.IdProf);
         Toast.makeText(ProfileActivity.this, "Welcome " + Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
 
 
@@ -65,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 btnuplode = (Button) findViewById(R.id.uplodeimage);
                 messageText = (TextView) findViewById(R.id.messageText);
+
                 dialog = ProgressDialog.show(ProfileActivity.this, "", "Uploading file...", true);
 
               /*  new Thread(new Runnable() {
@@ -225,4 +236,71 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
+    private void selectImage() {
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                    startActivityForResult(takePicture, 0);
+
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    //Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 1);
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                case 0:
+                    if (resultCode == RESULT_OK && data != null) {
+
+                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        imgprofil.setImageBitmap(selectedImage);
+                    }
+
+                    break;
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage = data.getData();
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                            imgprofil.setImageBitmap(bitmap);
+
+                        } catch (FileNotFoundException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                    }
+                    break;
+            }
+        }
+    }
+
 }
