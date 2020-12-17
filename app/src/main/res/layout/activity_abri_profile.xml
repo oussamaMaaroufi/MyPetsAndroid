@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VeterinaireProfile">
+    tools:context=".AbriProfile">
 
 
     <LinearLayout
@@ -17,7 +17,7 @@
 
         <ImageView
 
-            android:id="@+id/imageProfileVeto"
+            android:id="@+id/imageProfileAbri"
             android:layout_width="200dp"
             android:layout_height="162dp"
             android:layout_gravity="center"
@@ -26,7 +26,7 @@
             android:src="@mipmap/ic_logo_foreground" />
 
         <TextView
-            android:id="@+id/nameProfileVeto"
+            android:id="@+id/nameProfileAbri"
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="55dp"
@@ -48,13 +48,19 @@
             >
 
             <Button
-                android:id="@+id/aboutMeVeto"
+                android:id="@+id/aboutMeAbri"
                 android:layout_width="128dp"
                 android:layout_height="59dp"
                 android:layout_margin="5dp"
                 android:text="About Me"
                 android:textColor="@color/black" />
-
+            <Button
+                android:id="@+id/btnMyAnimalsAbri"
+                android:layout_width="118dp"
+                android:layout_height="59dp"
+                android:layout_margin="5dp"
+                android:text="Animals"
+                android:textColor="@color/black" />
 
 
 
@@ -84,7 +90,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/emailProfileVeto"
+                android:id="@+id/emailProfileAbri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -119,7 +125,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/phoneProfileVeto"
+                android:id="@+id/phoneProfileAbri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -154,7 +160,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/facebookProfileVeto"
+                android:id="@+id/facebookProfileAbri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -189,7 +195,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/addressProfileVeto"
+                android:id="@+id/addressProfileAbri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""

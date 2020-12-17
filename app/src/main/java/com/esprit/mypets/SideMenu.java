@@ -43,7 +43,7 @@ public class SideMenu extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SideMenu.this,ProfileActivity.class);
+                Intent intent = new Intent(SideMenu.this,MyProfile.class);
                 startActivity(intent);
             }
         });
