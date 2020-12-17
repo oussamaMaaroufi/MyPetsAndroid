@@ -12,14 +12,6 @@ public class AnimalResponseList {
     private String message;
     private ArrayList<Animal> Animal ;
 
-    public ArrayList<Animal> getAnimal() {
-        return Animal;
-    }
-
-    public void setAnimal(ArrayList<Animal> animal) {
-        this.Animal = animal;
-    }
-
     public String getSuccess() {
         return success;
     }
@@ -34,5 +26,22 @@ public class AnimalResponseList {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public ArrayList<com.esprit.mypets.entity.Animal> getAnimal() {
+        return Animal;
+    }
+
+    public void setAnimal(ArrayList<com.esprit.mypets.entity.Animal> animal) {
+        Animal = animal;
+    }
+
+    @Override
+    public String toString() {
+        return "AnimalResponseList{" +
+                "success='" + success + '\'' +
+                ", message='" + message + '\'' +
+                ", Animal=" + Animal +
+                '}';
     }
 }

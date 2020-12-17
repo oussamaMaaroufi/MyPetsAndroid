@@ -32,7 +32,7 @@ public class MyAnimals extends AppCompatActivity {
     MyAdapterMyAnimal myAdapterAnimal;
     Button btnAddAnimal,btnAfficheMyAnimals;
 
-    public static ArrayList<Animal> animals = new ArrayList<>();
+    public static ArrayList<Animal> animal = new ArrayList<>();
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
 
@@ -41,29 +41,25 @@ public class MyAnimals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_animals);
 
-        getAllAnimals(iServiseAnimal);
+      //  getAllAnimals(iServiseAnimal);
         btnAfficheMyAnimals = findViewById(R.id.btnAfficheMyAnimals);
         btnAddAnimal = findViewById(R.id.AddAnimal);
         recyclerView = findViewById(R.id.recyclerviewMyAnimals);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        if(!animals.isEmpty()) {
-            myAdapterAnimal = new MyAdapterMyAnimal(getApplicationContext(), animals);
+        myAdapterAnimal = new MyAdapterMyAnimal(this, animal);
+        recyclerView.setAdapter(myAdapterAnimal);
 
-            recyclerView.setAdapter(myAdapterAnimal);
-        }else {
-            Toast.makeText(MyAnimals.this, "you don't have any animal (add your animal)", Toast.LENGTH_SHORT).show();
-        }
         btnAfficheMyAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             //    Toast.makeText(MyAnimals.this, animals.get(0).toString(), Toast.LENGTH_SHORT).show();
-                if(!animals.isEmpty()) {
-                    myAdapterAnimal = new MyAdapterMyAnimal(getApplicationContext(), animals);
+                if(!MyAnimals.animal.isEmpty()) {
+                    myAdapterAnimal = new MyAdapterMyAnimal(getApplicationContext(), MyAnimals.animal);
 
                     recyclerView.setAdapter(myAdapterAnimal);
                 }else {
-                    Toast.makeText(MyAnimals.this, "you don't have any animal (add your animal)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyAnimals.this, "you don't have any animals (add your animal)", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,7 +76,7 @@ public class MyAnimals extends AppCompatActivity {
 
     }
 
-    public static void getAllAnimals(IServiseAnimal iServiseAnimal){
+    public static void getAllAnimal(IServiseAnimal iServiseAnimal){
         //    ArrayList<Animal> list = new ArrayList<Animal>();
         AnimalResponse animalResponse =new AnimalResponse();
         User u = (User) Vars.getUSER();
@@ -91,9 +87,9 @@ public class MyAnimals extends AppCompatActivity {
             @Override
             public void onResponse(Call<AnimalResponseList> call, Response<AnimalResponseList> response) {
                 if (!response.isSuccessful()){
-                 //   Toast.makeText(MyAnimals.this, "Error "+response.errorBody(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MyAnimals.this, "Error "+response.errorBody(), Toast.LENGTH_SHORT).show();
                 } else {
-                    animals = response.body().getAnimal();
+                    MyAnimals.animal = response.body().getAnimal();
                 }
 
             }

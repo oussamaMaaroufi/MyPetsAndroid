@@ -55,7 +55,7 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
     public MyAdapterMyAnimal(Context myContext, ArrayList<Animal> animals) {
         this.myContext = myContext;
         this.animals = animals;
-        updateData(animals);
+     //   updateData(animals);
     }
 
     @NonNull
@@ -71,20 +71,12 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
         //holder.imageView.setImageResource(country.getImage());
         holder.nomAnimal.setText(animal.getName());
         holder.raceAnimal.setText(animal.getRace());
-      /*  holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(myContext, animal.toString(), Toast.LENGTH_SHORT).show();
-                deleteAnimal(animal);
-                updateData(animals);
 
-            }
-        });*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent =new Intent(myContext, ProfileAnimal.class);
+                Intent intent =new Intent(myContext, Adoption.class);
                 intent.putExtra("Name",animal.getName());
                 intent.putExtra("id",animal.getId());
                 intent.putExtra("Race",animal.getRace());
@@ -117,7 +109,7 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
 
                     Toast.makeText(myContext, "Error ", Toast.LENGTH_SHORT).show();
                 } else {
-                    MyAnimals.getAllAnimals(iServiseAnimal);
+                  //  MyAnimals.getAllAnimal(iServiseAnimal);
                    Toast.makeText(myContext,  "Delete is Successful"  , Toast.LENGTH_SHORT).show();
 
                 }

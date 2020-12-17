@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.esprit.mypets.Adoption;
+import com.esprit.mypets.ProfileAnimal;
 import com.esprit.mypets.R;
 import com.esprit.mypets.entity.Animal;
 
@@ -64,14 +65,17 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
             @Override
             public void onClick(View v) {
                 Toast.makeText(myContext,animal.getName(), Toast.LENGTH_SHORT).show();
-                Intent intent =new Intent(myContext, Adoption.class);
+               Intent intent =new Intent(myContext, ProfileAnimal.class);
                 intent.putExtra("Name",animal.getName());
                 intent.putExtra("id",animal.getId());
                 intent.putExtra("Race",animal.getRace());
                 intent.putExtra("Type",animal.getType());
                 intent.putExtra("image",animal.getImage());
                 intent.putExtra("IdUser",animal.getIdUser());
-                myContext.startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myContext.getApplicationContext().startActivity(intent);
+
+
             }
         });
     }

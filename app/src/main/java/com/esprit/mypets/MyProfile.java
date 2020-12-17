@@ -44,7 +44,7 @@ public class MyProfile extends AppCompatActivity {
         Email.setText(user.getEmail());
         address.setText(Vars.getAddress());
         phone.setText(Vars.getPhone());
-        MyAnimals.getAllAnimals(iServiseAnimal);
+        MyAnimals.getAllAnimal(iServiseAnimal);
 
             if (user.getType().equals("Volontaires")) {
 

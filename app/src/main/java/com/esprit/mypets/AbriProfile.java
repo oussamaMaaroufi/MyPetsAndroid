@@ -46,7 +46,7 @@ public class AbriProfile extends AppCompatActivity {
         Email.setText(user.getEmail());
         address.setText(Vars.getAddress());
         phone.setText(Vars.getPhone());
-        MyAnimals.getAllAnimals(iServiseAnimal);
+        //MyAnimals.getAllAnimals(iServiseAnimal);
 
         aboutMe.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -76,7 +76,7 @@ public class AddAnimal extends AppCompatActivity {
                                 Toast.makeText(AddAnimal.this, "Error ", Toast.LENGTH_SHORT).show();
                             } else {
                                 if(response.body().getSuccess().equals("true")){
-                                    MyAnimals.getAllAnimals(iServiseAnimal);
+                                    MyAnimals.getAllAnimal(iServiseAnimal);
                                   Toast.makeText(AddAnimal.this,  response.body().getAnimal().toString()  , Toast.LENGTH_SHORT).show();
                                   Intent intent =new Intent(AddAnimal.this,MyAnimals.class);
                                   startActivity(intent);

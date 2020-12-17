@@ -19,6 +19,7 @@ public class ProfileAnimal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_animal);
+        /*
         callphone = findViewById(R.id.btnAnimalCall);
 
         nameAnimal = findViewById(R.id.nameAnimalProfileAdop);
@@ -26,11 +27,9 @@ public class ProfileAnimal extends AppCompatActivity {
         Address = findViewById(R.id.addressProfileAdop);
         type = findViewById(R.id.TypeAnimalProfile);
         Rase = findViewById(R.id.RaceAnimalProfile);
-
-        callphone = findViewById(R.id.btnAnimalCall);
         Photo = findViewById(R.id.btnphotosAnimal);
 
-
+*/
 
 
     }

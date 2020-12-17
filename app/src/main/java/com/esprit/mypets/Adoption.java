@@ -75,9 +75,10 @@ public class Adoption extends AppCompatActivity {
 
                     Toast.makeText(myContext, "Error ", Toast.LENGTH_SHORT).show();
                 } else {
-                    MyAnimals.getAllAnimals(iServiseAnimal);
-                    Toast.makeText(myContext,  "Delete is Successful"  , Toast.LENGTH_SHORT).show();
-
+                    if (response.body().getSuccess().equals("true")) {
+                        MyAnimals.getAllAnimal(iServiseAnimal);
+                        Toast.makeText(myContext, "Delete is Successful", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
