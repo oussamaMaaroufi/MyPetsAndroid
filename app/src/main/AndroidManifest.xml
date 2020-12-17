@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VeterinaireProfile"></activity>
+        <activity android:name=".AbriActivity"></activity>
+        <activity android:name=".VeterinaireProfile" />
         <activity android:name=".AbriList" />
         <activity android:name=".VeterinaireList" />
         <activity android:name=".SideMenu" />
