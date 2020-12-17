@@ -11,15 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.esprit.mypets.Retrofit.IServeceAbri;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
-import com.esprit.mypets.Retrofit.IServiseVeterinaire;
-import com.esprit.mypets.Retrofit.IServiseVolontaires;
 import com.esprit.mypets.Retrofit.RetrofitClient;
-import com.esprit.mypets.entity.Abris;
 import com.esprit.mypets.entity.User;
-import com.esprit.mypets.entity.Veterinaires;
-import com.esprit.mypets.entity.Volontaires;
 
 import retrofit2.Retrofit;
 

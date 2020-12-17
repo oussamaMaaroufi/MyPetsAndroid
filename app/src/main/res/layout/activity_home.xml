@@ -5,46 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/gray"
-        >
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/Hometoolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/buttonColor"
-            app:title="Adoption Home"
-            />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <Button
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:id="@+id/buttonMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/buttonColor" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/Hometoolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/buttonColor"
+                app:title="Adoption Home"
+
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
                 android:id="@+id/btnAffiche"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:text="load List" />
+
             <Button
 
-                android:layout_marginRight="10dp"
                 android:id="@+id/Myprofil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:text="My Profil" />
+
             <Button
 
                 android:id="@+id/btnLostAndfound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:text="LOst And Found" />
+                android:text="LOst And Found"
+                android:textSize="10dp" />
 
         </LinearLayout>
 
@@ -56,7 +74,6 @@
             android:background="@color/gray"
 
             >
-
 
 
         </androidx.recyclerview.widget.RecyclerView>

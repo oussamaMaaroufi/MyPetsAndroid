@@ -5,19 +5,20 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Abris {
-    private String id;
+    private String _id;
     private String IdUser;
+    private String name;
     private String Adresse;
     private String telephon;
     private String image;
 
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getIdUser() {
@@ -35,7 +36,6 @@ public class Abris {
     public void setAdresse(String adresse) {
         Adresse = adresse;
     }
-
     public String getTelephon() {
         return telephon;
     }
@@ -52,10 +52,18 @@ public class Abris {
         this.image = image;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Abris{" +
-                "id='" + id + '\'' +
+                "id='" + _id + '\'' +
                 ", IdUser='" + IdUser + '\'' +
                 ", Adresse='" + Adresse + '\'' +
                 ", telephon='" + telephon + '\'' +
