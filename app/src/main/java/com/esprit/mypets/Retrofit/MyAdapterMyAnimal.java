@@ -34,23 +34,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.MyViewHolder>{
-    private Context myContext;
-    private  ArrayList<Animal> animals;
-    Retrofit retrofitClient = RetrofitClient.getInstance();
-    IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView nomAnimal,raceAnimal ;
-        Button delete,adoption;
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            imageView = itemView.findViewById(R.id.imageAniamlHome);
-            nomAnimal = itemView.findViewById(R.id.nameAniamlHome);
-            raceAnimal = itemView.findViewById(R.id.raceAnimalHome);
-            delete = itemView.findViewById(R.id.btnDeleteAnimal);
-            adoption = itemView.findViewById(R.id.btnAddAdoption);
+           private Context myContext;
+        private  ArrayList<Animal> animals;
+        Retrofit retrofitClient = RetrofitClient.getInstance();
+        IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
+        public static class MyViewHolder extends RecyclerView.ViewHolder {
+            ImageView imageView;
+            TextView nomAnimal,raceAnimal ;
+            Button delete,adoption;
+            public MyViewHolder(View itemView) {
+                super(itemView);
+                imageView = itemView.findViewById(R.id.imageAniamlHome);
+                nomAnimal = itemView.findViewById(R.id.nameAniamlHome);
+                raceAnimal = itemView.findViewById(R.id.raceAnimalHome);
+                delete = itemView.findViewById(R.id.btnDeleteAnimal);
+                adoption = itemView.findViewById(R.id.btnAddAdoption);
 
-        }
+            }
 
     }
 

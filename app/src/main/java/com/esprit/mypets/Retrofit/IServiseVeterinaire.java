@@ -1,6 +1,7 @@
 package com.esprit.mypets.Retrofit;
 
 import com.esprit.mypets.entity.Veterinaires;
+import com.esprit.mypets.entyityResponse.VeterinaireResponseList;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 
 import retrofit2.Call;
@@ -15,4 +16,8 @@ public interface IServiseVeterinaire {
 
     @POST("veterinaire/auth")
     Call<VeterinairesResponse> GetVeterinairesById(@Body Veterinaires veterinaires);
+
+    @POST("veterinaire/list")
+    Call<VeterinaireResponseList> GetVeterinaires();
+
 }

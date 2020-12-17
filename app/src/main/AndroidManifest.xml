@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LostAndFound"></activity>
+        <activity android:name=".VeterinaireProfile"></activity>
+        <activity android:name=".AbriList" />
+        <activity android:name=".VeterinaireList" />
+        <activity android:name=".SideMenu" />
+        <activity android:name=".LostAndFound" />
         <activity android:name=".Adoption" />
         <activity android:name=".AddAnimal" />
         <activity android:name=".MyAnimals" />

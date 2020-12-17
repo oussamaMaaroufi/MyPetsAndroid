@@ -17,8 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.esprit.mypets.Retrofit.IServeceAbri;
-import com.esprit.mypets.Retrofit.IServieceUser;
+import com.esprit.mypets.Retrofit.IServiceAbri;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.IServiseVolontaires;
 import com.esprit.mypets.Retrofit.RetrofitClient;
@@ -27,7 +26,6 @@ import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entity.Veterinaires;
 import com.esprit.mypets.entity.Volontaires;
 import com.esprit.mypets.entyityResponse.AbriResponse;
-import com.esprit.mypets.entyityResponse.UserResponse;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
 
@@ -45,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button save,btnuplode;
     private TextView messageText,name;
     private ProgressDialog dialog;
-    private IServeceAbri iServeceAbri;
+    private IServiceAbri iServeceAbri;
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
@@ -115,9 +113,10 @@ public class ProfileActivity extends AppCompatActivity {
                         volontaires.setIdUser(user.getId());
                         volontaires.setAdresse(addresS);
                         volontaires.setTelephon(phoneS);
+
                         CreateProfilVolo(volontaires);
                     } else if (user.getType().equals("Abris")) {
-                        iServeceAbri = retrofit.create(IServeceAbri.class);
+                        iServeceAbri = retrofit.create(IServiceAbri.class);
                         Abris abris = new Abris();
                         abris.setIdUser(user.getId());
                         abris.setAdresse(addresS);
@@ -129,6 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
                         veterinaires.setIdUser(user.getId());
                         veterinaires.setAdresse(addresS);
                         veterinaires.setTelephon(phoneS);
+                        veterinaires.setName(user.getName());
                         CreateProfilVeto(veterinaires);
 
                     }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <ImageView
+            android:id="@+id/imageVeterianireHome"
+            android:layout_width="158dp"
+            android:layout_height="139dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle"
+            android:src="@mipmap/ic_logo_foreground" />
+
+
+            <TextView
+                android:id="@+id/nameVeterinaireHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:text="name"
+                android:textIsSelectable="true"
+                android:textSize="20dp" />
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

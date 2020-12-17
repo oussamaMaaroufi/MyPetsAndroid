@@ -3,6 +3,7 @@ package com.esprit.mypets.entity;
 public class Veterinaires   {
     private String id;
     private String IdUser;
+    private String name;
     private String Adresse;
     private String telephon;
     private String image;
@@ -48,6 +49,14 @@ public class Veterinaires   {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -3,24 +3,20 @@ package com.esprit.mypets;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.esprit.mypets.Retrofit.IServeceAbri;
+import com.esprit.mypets.Retrofit.IServiceAbri;
 import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.IServiseVolontaires;
 import com.esprit.mypets.Retrofit.RetrofitClient;
-import com.esprit.mypets.database.AppDatabase;
 import com.esprit.mypets.entity.Abris;
 import com.esprit.mypets.entity.User;
-import com.esprit.mypets.entity.UserSharedpref;
 import com.esprit.mypets.entity.Veterinaires;
 import com.esprit.mypets.entity.Volontaires;
 import com.esprit.mypets.entyityResponse.AbriResponse;
@@ -42,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
    // private AppDatabase database;
 
     IServieceUser iServieceUser;
-    private IServeceAbri iServeceAbri;
+    private IServiceAbri iServeceAbri;
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
@@ -129,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                 volontaires.setIdUser(user.getId());
                                 GetProfilVolo(volontaires);
                             } else if (user.getType().equals("Abris")) {
-                                iServeceAbri = retrofit.create(IServeceAbri.class);
+                                iServeceAbri = retrofit.create(IServiceAbri.class);
                                 Abris abris = new Abris();
                                 abris.setIdUser(user.getId());
                                 GetProfilAbri(abris);

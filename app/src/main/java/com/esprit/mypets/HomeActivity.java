@@ -34,7 +34,7 @@ import retrofit2.Retrofit;
 public class HomeActivity extends AppCompatActivity {
     private TextView Name,email;
     RecyclerView recyclerView;
-    Button btnAffich ,btnMyProfil,btnLAF;
+    Button btnAffich ,btnMyProfil,btnLAF,btnMenu;
     MyAdapterAnimal myAdapterAnimal;
 
     public static ArrayList<Animal> animals = new ArrayList<Animal>();
@@ -46,8 +46,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         btnLAF= findViewById(R.id.btnLostAndfound);
+
+
         try {
             User u =(User) Vars.getUSER();
             Toast.makeText(HomeActivity.this, u.toString(), Toast.LENGTH_SHORT).show();
@@ -123,6 +124,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btnMenu= findViewById(R.id.buttonMenu);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
 
 
 
