@@ -6,6 +6,7 @@ public class Volontaires {
 
     private String id;
     private String IdUser;
+    private String name;
     private String Adresse;
     private String telephon;
     private String image;
@@ -52,11 +53,20 @@ public class Volontaires {
         this.image = image;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Volontaires{" +
                 "id='" + id + '\'' +
                 ", IdUser='" + IdUser + '\'' +
+                ", name='" + name + '\'' +
                 ", Adresse='" + Adresse + '\'' +
                 ", telephon='" + telephon + '\'' +
                 ", image='" + image + '\'' +

@@ -113,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
                         volontaires.setIdUser(user.getId());
                         volontaires.setAdresse(addresS);
                         volontaires.setTelephon(phoneS);
+                        volontaires.setName(user.getName());
 
                         CreateProfilVolo(volontaires);
                     } else if (user.getType().equals("Abris")) {
@@ -121,6 +122,7 @@ public class ProfileActivity extends AppCompatActivity {
                         abris.setIdUser(user.getId());
                         abris.setAdresse(addresS);
                         abris.setTelephon(phoneS);
+                        abris.setName(user.getName());
                         CreateProfilAbri(abris);
                     } else {
                         iServiseVeterinaire = retrofit.create(IServiseVeterinaire.class);

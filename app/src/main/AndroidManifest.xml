@@ -16,6 +16,7 @@
         <activity android:name=".Adoption" />
         <activity android:name=".AddAnimal" />
         <activity android:name=".MyAnimals" />
+        <activity android:name=".SideMenu"/>
         <activity android:name=".MyProfile" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
