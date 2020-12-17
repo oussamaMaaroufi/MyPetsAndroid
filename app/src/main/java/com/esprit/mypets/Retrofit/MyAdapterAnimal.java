@@ -66,13 +66,14 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
             public void onClick(View v) {
                 Toast.makeText(myContext,animal.getName(), Toast.LENGTH_SHORT).show();
                Intent intent =new Intent(myContext, ProfileAnimal.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 intent.putExtra("Name",animal.getName());
                 intent.putExtra("id",animal.getId());
                 intent.putExtra("Race",animal.getRace());
                 intent.putExtra("Type",animal.getType());
                 intent.putExtra("image",animal.getImage());
                 intent.putExtra("IdUser",animal.getIdUser());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 myContext.getApplicationContext().startActivity(intent);
 
 
