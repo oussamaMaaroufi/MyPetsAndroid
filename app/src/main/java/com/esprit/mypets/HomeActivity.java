@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import retrofit2.Retrofit;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView Name,email;
+    private Context myContext = this;
     RecyclerView recyclerView;
     Button btnAffich ,btnMyProfil,btnLAF;
     MyAdapterAnimal myAdapterAnimal;
@@ -55,18 +57,19 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(HomeActivity.this,  e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-      /*  Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
+        Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
 
         call.enqueue(new Callback<AnimalResponseList>() {
             @Override
             public void onResponse(Call<AnimalResponseList> call, Response<AnimalResponseList> response) {
                 if (!response.isSuccessful()){
-                    Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                 } else {
-                  //  Toast.makeText(HomeActivity.this,  response.body().getAnimal().get(0).toString()     , Toast.LENGTH_SHORT).show();
+                       Toast.makeText(HomeActivity.this,  response.body().toString()    , Toast.LENGTH_SHORT).show();
                     animals = response.body().getAnimal();
 
-
+                    myAdapterAnimal = new MyAdapterAnimal(myContext, HomeActivity.animals);
+                    recyclerView.setAdapter(myAdapterAnimal);
                 }
 
             }
@@ -76,16 +79,15 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-*/
 
         btnAffich = findViewById(R.id.btnAffiche);
         btnMyProfil = findViewById(R.id.Myprofil);
         recyclerView = findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        if(!HomeActivity.animals.isEmpty()) {
-          myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), HomeActivity.animals);
-         }
-        recyclerView.setAdapter(myAdapterAnimal);
+//        if(!HomeActivity.animals.isEmpty()) {
+      //  myAdapterAnimal = new MyAdapterAnimal(getApplicationContext(), HomeActivity.animals);
+ //        }
+     //   recyclerView.setAdapter(myAdapterAnimal);
 
         btnMyProfil.setOnClickListener(new View.OnClickListener() {
             @Override

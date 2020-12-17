@@ -49,34 +49,7 @@
                 android:textIsSelectable="true"
                 android:textSize="20dp" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnDeleteAnimal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/buttonColor"
-                android:text="Delete"
-                android:textIsSelectable="true"
-                android:textSize="20dp"
-                 />
-
-            <Button
-                android:layout_marginTop="5dp"
-                android:id="@+id/btnAddAdoption"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:text="Adoption"
-                android:textIsSelectable="true"
-                android:textSize="15dp"
-                android:background="@color/buttonColor"/>
-        </LinearLayout>
 
 
 

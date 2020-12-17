@@ -29,7 +29,6 @@ public class MyAdapterLAF  extends RecyclerView.Adapter<MyAdapterLAF.MyViewHolde
             imageView = itemView.findViewById(R.id.LAFimageAniaml);
             userName = itemView.findViewById(R.id.LAFUserName);
             desc = itemView.findViewById(R.id.LAFDesc);
-
         }
 
     }

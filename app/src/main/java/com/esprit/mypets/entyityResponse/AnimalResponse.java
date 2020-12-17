@@ -5,7 +5,7 @@ import com.esprit.mypets.entity.Animal;
 public class AnimalResponse {
     private String success;
     private String message;
-    private Animal animal;
+    private Animal Animal;
 
 
     public String getSuccess() {
@@ -25,11 +25,11 @@ public class AnimalResponse {
     }
 
     public Animal getAnimal() {
-        return animal;
+        return Animal;
     }
 
     public void setAnimal(Animal animal) {
-        this.animal = animal;
+        this.Animal = animal;
     }
 
 
@@ -39,7 +39,7 @@ public class AnimalResponse {
         return "AnimalResponse{" +
                 "success='" + success + '\'' +
                 ", message='" + message + '\'' +
-                ", animal=" + animal +
+                ", animal=" + Animal +
                 '}';
     }
 }

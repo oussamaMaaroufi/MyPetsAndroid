@@ -118,10 +118,10 @@ public class LoginActivity extends AppCompatActivity {
                            // Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
 
                         }else {
-                            HomeActivity.getAllAnimals(iServiseAnimal);
                              UserResponse userResponse = response.body();
                             User user = userResponse.getUser();
                             Vars.setUSER(user);
+                            HomeActivity.getAllAnimals(iServiseAnimal);
                             Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
                             if (user.getType().equals("Volontaires")) {
                                 iServiseVolontaires = retrofit.create(IServiseVolontaires.class);

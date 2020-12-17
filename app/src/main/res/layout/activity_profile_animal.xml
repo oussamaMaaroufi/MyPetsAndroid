@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileAnimal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/gray"
+        >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/ProfilAnimalBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/buttonColor"
+            android:gravity="center"
+            app:title=" Profile Animal"/>
+
+        <ImageView
+
+            android:id="@+id/imageAnimalProfile"
+            android:layout_width="200dp"
+            android:layout_height="162dp"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:background="@drawable/circle"
+            android:src="@mipmap/ic_logo_foreground" />
+
+        <TextView
+            android:id="@+id/nameAnimalProfileAdop"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:background="@color/gray"
+            android:text=" AnimalName"
+            android:textAllCaps="false"
+            android:textIsSelectable="false"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:verticalScrollbarPosition="defaultPosition" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btnAnimalCall"
+                android:layout_width="118dp"
+                android:layout_height="59dp"
+                android:layout_margin="5dp"
+                android:text="Call"
+                android:textColor="@color/black" />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btnphotosAnimal"
+                android:layout_width="124dp"
+                android:layout_height="59dp"
+                android:layout_margin="5dp"
+                android:text="Photos"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Race"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/RaceAnimalProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light">
+
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/buttonColor"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/TypeAnimalProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light">
+
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/buttonColor"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Animal's owner "
+                android:textColor="@color/black"
+                android:textSize="13sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light">
+
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/buttonColor"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/addressProfileAdop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light">
+
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/buttonColor"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

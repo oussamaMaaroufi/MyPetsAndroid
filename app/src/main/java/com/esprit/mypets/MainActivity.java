@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
+        HomeActivity.getAllAnimals(iServiseAnimal);
 
         joinUs = findViewById(R.id.joinUs);
         joinUs.setOnClickListener(new View.OnClickListener() {

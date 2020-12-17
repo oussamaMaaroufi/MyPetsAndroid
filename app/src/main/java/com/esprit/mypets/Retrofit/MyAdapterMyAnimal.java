@@ -14,13 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.esprit.mypets.AddAnimal;
+import com.esprit.mypets.Adoption;
 import com.esprit.mypets.HomeActivity;
 import com.esprit.mypets.LoginActivity;
 import com.esprit.mypets.MainActivity;
 import com.esprit.mypets.MyAnimals;
+import com.esprit.mypets.ProfileAnimal;
 import com.esprit.mypets.R;
 import com.esprit.mypets.Vars;
-import com.esprit.mypets.entity.Adoption;
 import com.esprit.mypets.entity.Animal;
 import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
@@ -38,18 +39,15 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
     private  ArrayList<Animal> animals;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
+    IServieceUser iServieceUser = retrofitClient.create(IServieceUser.class);
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView nomAnimal,raceAnimal ;
-        Button delete,adoption;
         public MyViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageAniamlHome);
             nomAnimal = itemView.findViewById(R.id.nameAniamlHome);
             raceAnimal = itemView.findViewById(R.id.raceAnimalHome);
-            delete = itemView.findViewById(R.id.btnDeleteAnimal);
-            adoption = itemView.findViewById(R.id.btnAddAdoption);
-
         }
 
     }
@@ -57,6 +55,7 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
     public MyAdapterMyAnimal(Context myContext, ArrayList<Animal> animals) {
         this.myContext = myContext;
         this.animals = animals;
+        updateData(animals);
     }
 
     @NonNull
@@ -72,7 +71,7 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
         //holder.imageView.setImageResource(country.getImage());
         holder.nomAnimal.setText(animal.getName());
         holder.raceAnimal.setText(animal.getRace());
-        holder.delete.setOnClickListener(new View.OnClickListener() {
+      /*  holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(myContext, animal.toString(), Toast.LENGTH_SHORT).show();
@@ -80,17 +79,12 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
                 updateData(animals);
 
             }
-        });
+        });*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myContext,animal.getType(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.adoption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(myContext, Adoption.class);
+
+                Intent intent =new Intent(myContext, ProfileAnimal.class);
                 intent.putExtra("Name",animal.getName());
                 intent.putExtra("id",animal.getId());
                 intent.putExtra("Race",animal.getRace());
@@ -98,12 +92,11 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
                 intent.putExtra("image",animal.getImage());
                 intent.putExtra("IdUser",animal.getIdUser());
                 myContext.startActivity(intent);
-
             }
         });
 
     }
-    public void updateData(ArrayList<Animal> viewModels) {
+    public  void updateData(ArrayList<Animal> viewModels) {
         animals.clear();
         animals.addAll(viewModels);
         notifyDataSetChanged();

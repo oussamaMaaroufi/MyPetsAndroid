@@ -10,14 +10,14 @@ public class AnimalResponseList {
 
     private String success;
     private String message;
-    private ArrayList<Animal> animal = null;
+    private ArrayList<Animal> Animal ;
 
     public ArrayList<Animal> getAnimal() {
-        return animal;
+        return Animal;
     }
 
     public void setAnimal(ArrayList<Animal> animal) {
-        this.animal = animal;
+        this.Animal = animal;
     }
 
     public String getSuccess() {

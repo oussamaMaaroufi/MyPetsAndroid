@@ -1,6 +1,7 @@
 package com.esprit.mypets.Retrofit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esprit.mypets.Adoption;
 import com.esprit.mypets.R;
 import com.esprit.mypets.entity.Animal;
 
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyViewHolder> {
     private Context myContext;
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> animals = new ArrayList<Animal>();
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -62,6 +64,14 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
             @Override
             public void onClick(View v) {
                 Toast.makeText(myContext,animal.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent =new Intent(myContext, Adoption.class);
+                intent.putExtra("Name",animal.getName());
+                intent.putExtra("id",animal.getId());
+                intent.putExtra("Race",animal.getRace());
+                intent.putExtra("Type",animal.getType());
+                intent.putExtra("image",animal.getImage());
+                intent.putExtra("IdUser",animal.getIdUser());
+                myContext.startActivity(intent);
             }
         });
     }
