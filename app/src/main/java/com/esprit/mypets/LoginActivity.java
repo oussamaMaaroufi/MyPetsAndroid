@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                             User user = userResponse.getUser();
                             Vars.setUSER(user);
                             HomeActivity.getAllAnimals(iServiseAnimal);
-                            Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
                             if (user.getType().equals("Volontaires")) {
                                 iServiseVolontaires = retrofit.create(IServiseVolontaires.class);
                                 Volontaires volontaires = new Volontaires();
@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                         finishAffinity();
                     }else {
 
-                        Toast.makeText(LoginActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(LoginActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                     }
@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
                         finishAffinity();
 
                     }else {
-                        Toast.makeText(LoginActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(LoginActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                     }
@@ -249,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finishAffinity();
                     }else {
-                        Toast.makeText(LoginActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
+                //        Toast.makeText(LoginActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                     }

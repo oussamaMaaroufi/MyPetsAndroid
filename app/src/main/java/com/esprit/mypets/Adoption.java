@@ -35,6 +35,10 @@ public class Adoption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adoption);
         Intent intent =getIntent();
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
         animal.setId(intent.getStringExtra("id"));
         animal.setIdUser(intent.getStringExtra("IUser"));
         animal.setName(intent.getStringExtra("Name"));

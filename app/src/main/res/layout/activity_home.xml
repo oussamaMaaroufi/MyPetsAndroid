@@ -6,35 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <LinearLayout
+
+
+
+<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btnmenu1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="4"
+            android:background="@color/buttonColor"
+            android:src="@drawable/ic_baseline_menu_24" />
 
-            <Button
-                android:id="@+id/buttonMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/buttonColor" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="MissingConstraints">
+
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/Hometoolbar"
+                android:id="@+id/nav_view"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/buttonColor"
-                app:title="Adoption Home"
-
-                />
-        </LinearLayout>
+                android:layout_height="?attr/actionBarSize"
+                app:title="Adoption Home" />
 
 
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </LinearLayout>
+
+<!--
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +83,7 @@
                 android:text="LOst And Found"
                 android:textSize="10dp" />
 
-        </LinearLayout>
+        </LinearLayout> -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHome"

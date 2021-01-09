@@ -32,12 +32,16 @@ public class AbriList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
         setContentView(R.layout.activity_abri_list);
         recyclerView = findViewById(R.id.abriListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         adapterAbri = new MyAdapterAbri(this,abrises);
         recyclerView.setAdapter(adapterAbri);
-        btnMenu= findViewById(R.id.buttonMenuAbri);
+     /*   btnMenu= findViewById(R.id.buttonMenuAbri);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +49,8 @@ public class AbriList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+      */
 
     }
     public static void getListAbris (IServiceAbri iServiceAbri){

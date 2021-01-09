@@ -31,6 +31,10 @@ public class AbriProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abri_profile);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
         User user =(User) Vars.getUSER();
         Toast.makeText(AbriProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
         imageProfile = findViewById(R.id.imageProfileAbri);

@@ -13,24 +13,24 @@
         android:background="@color/gray"
         >
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/ProfilAnimalBar"
+        <include
+            layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/buttonColor"
-            android:gravity="center"
-            app:title=" Profile Animal"/>
-<!--
-        <ImageView
+            android:layout_marginBottom="10dp"
+            />
 
-            android:id="@+id/imageAnimalProfile"
-            android:layout_width="200dp"
-            android:layout_height="162dp"
-            android:layout_gravity="center"
-            android:layout_margin="30dp"
-            android:background="@drawable/circle"
-            android:src="@mipmap/ic_logo_foreground" />
--->
+
+                <ImageView
+
+                    android:id="@+id/imageAnimalProfile"
+                    android:layout_width="200dp"
+                    android:layout_height="162dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:background="@drawable/circle"
+                    android:src="@mipmap/ic_logo_foreground" />
+
         <TextView
             android:id="@+id/nameAnimalProfileAdop"
             android:layout_width="match_parent"

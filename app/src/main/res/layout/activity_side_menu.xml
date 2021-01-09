@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".SideMenu"
     android:background="@color/gray">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -33,7 +38,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
@@ -57,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray"
-            android:text="LOST"
+            android:text="LOST And found"
             android:textColor="@color/black" />
         <Button
             android:id="@+id/MenuFound"
@@ -88,6 +93,7 @@
             android:text="LOG OUT"
             android:textColor="@color/black" />
 
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,6 +37,10 @@ public class AddAnimal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_animal);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
 
         name = findViewById(R.id.NameAddAnimal);
         race = findViewById(R.id.race);

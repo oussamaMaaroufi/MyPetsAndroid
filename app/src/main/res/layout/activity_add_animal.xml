@@ -7,12 +7,22 @@
     tools:context=".AddAnimal">
 
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="53dp">
+
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            />
 
 
         <EditText
@@ -20,10 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_marginBottom="50dp"
             android:inputType="textPersonName"
             android:hint="Name" />
 
         <EditText
+
+            android:layout_marginBottom="50dp"
             android:id="@+id/race"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,6 +45,8 @@
             android:hint="Race" />
 
         <LinearLayout
+
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -51,7 +66,8 @@
 
         <Button
             android:id="@+id/SaveAddAnimal"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save" />
 
