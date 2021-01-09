@@ -1,15 +1,21 @@
 package com.esprit.mypets;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
+import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.IServiseVolontaires;
 import com.esprit.mypets.Retrofit.RetrofitClient;
@@ -29,8 +36,10 @@ import com.esprit.mypets.entyityResponse.AbriResponse;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +47,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99 ;
+    private static final int CAPTURE_REQUEST_CODE = 0;
+    private static final int SELECT_REQUEST_CODE = 1;
     private EditText phone,addres;
-    private Button save,btnuplode;
+    private Button save,btnuplode,captureBtn;
     private TextView messageText,name;
     private ProgressDialog dialog;
     private IServiceAbri iServeceAbri;
@@ -49,7 +60,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Retrofit retrofit = RetrofitClient.getInstance();
     private User user;
     private ImageView imgprofil;
-
+    private ProgressDialog progressDialog;
+    Bitmap bitmap;
         @Override
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -63,6 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(user.getName());
         imgprofil = findViewById(R.id.IdProf);
         Toast.makeText(ProfileActivity.this, "Welcome " + Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
+            progressDialog = new ProgressDialog(ProfileActivity.this);
+            progressDialog.setMessage("Image Upload....");
 
 
         btnuplode = findViewById(R.id.uplodeimage);
@@ -70,30 +84,24 @@ public class ProfileActivity extends AppCompatActivity {
         btnuplode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                btnuplode = (Button) findViewById(R.id.uplodeimage);
-                messageText = (TextView) findViewById(R.id.messageText);
-
-                dialog = ProgressDialog.show(ProfileActivity.this, "", "Uploading file...", true);
-
-              /*  new Thread(new Runnable() {
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                messageText.setText("uploading started.....");
-                            }
-                        });
-
-                        //     uploadFile(uploadFilePath + "" + uploadFileName);
-
-                    }
-                }).start();
-*/
-
-
+                if(CheckPermission()) {
+                    Intent select = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(select, SELECT_REQUEST_CODE);
+                }
             }
 
 
+        });
+
+        captureBtn = findViewById(R.id.captureimage);
+        captureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CheckPermission()){
+                    Intent capture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(capture, CAPTURE_REQUEST_CODE);
+                }
+            }
         });
 
             save.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
                         volontaires.setTelephon(phoneS);
                         volontaires.setName(user.getName());
 
-                        CreateProfilVolo(volontaires);
+                        CreateProfilVolo(volontaires,bitmap);
                     } else if (user.getType().equals("Abris")) {
                         iServeceAbri = retrofit.create(IServiceAbri.class);
                         Abris abris = new Abris();
@@ -123,7 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
                         abris.setAdresse(addresS);
                         abris.setTelephon(phoneS);
                         abris.setName(user.getName());
-                        CreateProfilAbri(abris);
+                        CreateProfilAbri(abris,bitmap);
                     } else {
                         iServiseVeterinaire = retrofit.create(IServiseVeterinaire.class);
                         Veterinaires veterinaires = new Veterinaires();
@@ -131,7 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
                         veterinaires.setAdresse(addresS);
                         veterinaires.setTelephon(phoneS);
                         veterinaires.setName(user.getName());
-                        CreateProfilVeto(veterinaires);
+                        CreateProfilVeto(veterinaires,bitmap);
 
                     }
 
@@ -147,8 +155,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    private  void CreateProfilVolo(Volontaires volontaires){
-
+    private  void CreateProfilVolo(Volontaires volontaires,Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+        volontaires.setImage(image);
         try {
             Call<VolontairesResponse> call = iServiseVolontaires.registerVeterinaires(volontaires);
             call.enqueue(new Callback<VolontairesResponse>() {
@@ -162,6 +173,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (volontairesResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
+                        progressDialog.dismiss();
                     }else {
                         Toast.makeText(ProfileActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -177,7 +189,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
-    private  void CreateProfilAbri(Abris abris){
+    private  void CreateProfilAbri(Abris abris ,Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+        abris.setImage(image);
 
         try {
             Call<AbriResponse> call = iServeceAbri.registerAbri(abris);
@@ -192,6 +208,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (abriResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
+                        progressDialog.dismiss();
 
                     }else {
                         Toast.makeText(ProfileActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
@@ -208,8 +225,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
-    private  void CreateProfilVeto(Veterinaires veterinaires){
-
+    private  void CreateProfilVeto(Veterinaires veterinaires,Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+        veterinaires.setImage(image);
         try {
             Call<VeterinairesResponse> call = iServiseVeterinaire.registerVeterinaires(veterinaires);
             call.enqueue(new Callback<VeterinairesResponse>() {
@@ -223,6 +243,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (veterinairesResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
+                        progressDialog.dismiss();
                     }else {
                         Toast.makeText(ProfileActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -268,40 +289,87 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_CANCELED) {
-            switch (requestCode) {
-                case 0:
-                    if (resultCode == RESULT_OK && data != null) {
+        switch (requestCode){
 
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        imgprofil.setImageBitmap(selectedImage);
-                    }
+            case CAPTURE_REQUEST_CODE:
+            {
+                if(resultCode == RESULT_OK){
 
-                    break;
-                case 1:
-                    if (resultCode == RESULT_OK && data != null) {
-                        Uri selectedImage = data.getData();
-                        Bitmap bitmap = null;
-                        try {
-                            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                            imgprofil.setImageBitmap(bitmap);
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    imgprofil.setImageBitmap(bitmap);
+                    progressDialog.show();
 
-                        } catch (FileNotFoundException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                }
 
-                    }
-                    break;
             }
+            break;
+
+            case SELECT_REQUEST_CODE:
+            {
+                if(resultCode == RESULT_OK){
+
+                    try {
+                        Uri ImageUri = data.getData();
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
+                        imgprofil.setImageBitmap(bitmap);
+                        progressDialog.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+            break;
+        }
+        progressDialog.dismiss();
+    }
+
+    public boolean CheckPermission() {
+        if (ContextCompat.checkSelfPermission(ProfileActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ProfileActivity.this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ProfileActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) || ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                    Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                new AlertDialog.Builder(ProfileActivity.this)
+                        .setTitle("Permission")
+                        .setMessage("Please accept the permissions")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(ProfileActivity.this,
+                                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+
+
+                                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+                                ProfileActivity.this.overridePendingTransition(0, 0);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                ActivityCompat.requestPermissions(ProfileActivity.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+
+            return false;
+        } else {
+
+            return true;
+
         }
     }
 

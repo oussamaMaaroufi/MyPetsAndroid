@@ -6,19 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MyProfile">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/gray"
         tools:ignore="MissingConstraints">
-        <include
-            layout="@layout/app_bar_main"
+
+        <LinearLayout
+            android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:id="@+id/btnmenu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_weight="4"
+                android:background="@color/buttonColor"
+                android:src="@drawable/ic_baseline_menu_24" />
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/nav_view2"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="MY PROFILE" />
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </LinearLayout>
 
 
 

@@ -51,10 +51,21 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
       //  btnLAF= findViewById(R.id.btnLostAndfound);
+
         try {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
+
+        btnMenu= findViewById(R.id.btnmenu1);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
+
 
         try {
             User u =(User) Vars.getUSER();
@@ -80,14 +91,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        btnMenu= findViewById(R.id.btnmenu1);
-       btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,SideMenu.class);
-                startActivity(intent);
-            }
-        });
+
 
 
 

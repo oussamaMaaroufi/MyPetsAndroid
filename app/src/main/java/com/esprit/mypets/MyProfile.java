@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +24,18 @@ public class MyProfile extends AppCompatActivity {
     ImageView imageProfile;
     TextView nameProfile,address,Email,phone,facebook;
     Button btnMyAnimals,aboutMe,photos;
+    ImageButton btnMenu;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+
+        }
         User user =(User) Vars.getUSER();
         Toast.makeText(MyProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
         imageProfile = findViewById(R.id.imageProfile);
@@ -56,6 +63,17 @@ public class MyProfile extends AppCompatActivity {
 
             }
 
+
+
+
+        btnMenu = findViewById(R.id.btnmenu2);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfile.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
 
         btnMyAnimals.setOnClickListener(new View.OnClickListener() {
             @Override

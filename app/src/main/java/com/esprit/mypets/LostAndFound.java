@@ -2,9 +2,11 @@ package com.esprit.mypets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.esprit.mypets.Retrofit.IServiceLAF;
 import com.esprit.mypets.Retrofit.RetrofitClient;
@@ -14,6 +16,7 @@ import retrofit2.Retrofit;
 public class LostAndFound extends AppCompatActivity {
 
     Button addLAF,Lost,Found;
+    ImageButton btnMenu;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiceLAF iServiceLAF =retrofitClient.create(IServiceLAF.class);
 
@@ -27,8 +30,19 @@ public class LostAndFound extends AppCompatActivity {
 
         LostFragment.getAllLost(iServiceLAF);
         FoundFragment.getAllFound(iServiceLAF);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
 
-
+        }
+        btnMenu = findViewById(R.id.btnmenu4);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LostAndFound.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
         addLAF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

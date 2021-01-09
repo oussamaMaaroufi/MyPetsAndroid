@@ -3,6 +3,7 @@ package com.esprit.mypets;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
-  //  final SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref1", 0); // 0 - for private mode
-   // final SharedPreferences.Editor editor = pref.edit();
+
+   private SharedPreferences.Editor editor ;
   IServiseAnimal iServiseAnimal =retrofit.create(IServiseAnimal.class);
 
 
@@ -61,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
          email = findViewById(R.id.TxtEmail);
         password =findViewById(R.id.TxtPassword);
-
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         try {
             this.getSupportActionBar().hide();
@@ -175,17 +177,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        finishAffinity();
+                        finish();
                     }else {
 
                      //   Toast.makeText(LoginActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 @Override
                 public void onFailure(Call<VolontairesResponse> call, Throwable t) {
                     Toast.makeText(LoginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+
                 }
             });
 
@@ -211,12 +215,13 @@ public class LoginActivity extends AppCompatActivity {
                         Vars.setPhone(abriResponse.getAbris().getTelephon());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        finishAffinity();
+                        finish();
 
                     }else {
                       //  Toast.makeText(LoginActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 @Override
@@ -247,11 +252,12 @@ public class LoginActivity extends AppCompatActivity {
                         Vars.setPhone(veterinairesResponse.getVeterinaires().getTelephon());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        finishAffinity();
+                        finish();
                     }else {
                 //        Toast.makeText(LoginActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 @Override
@@ -266,5 +272,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void SaveUser (User user){
+
+        editor.putString("name",user.getName());
+        editor.putString("email",user.getEmail());
+        editor.putString("type",user.getType());
+
+        editor.commit();
+    }
 
 }
