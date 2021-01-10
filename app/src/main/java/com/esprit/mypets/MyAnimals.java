@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiseAnimal;
@@ -31,7 +32,7 @@ public class MyAnimals extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapterMyAnimal myAdapterAnimal;
     Button btnAddAnimal,btnAfficheMyAnimals;
-
+    ImageButton btnMenu;
     public static ArrayList<Animal> animal = new ArrayList<>();
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
@@ -40,7 +41,11 @@ public class MyAnimals extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_animals);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
 
+        }
       //  getAllAnimals(iServiseAnimal);
         btnAfficheMyAnimals = findViewById(R.id.btnAfficheMyAnimals);
         btnAddAnimal = findViewById(R.id.AddAnimal);
@@ -72,7 +77,14 @@ public class MyAnimals extends AppCompatActivity {
             }
         });
 
-
+        btnMenu = findViewById(R.id.btnmenu7);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAnimals.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

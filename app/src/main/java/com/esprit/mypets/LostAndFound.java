@@ -35,6 +35,7 @@ public class LostAndFound extends AppCompatActivity {
         }catch (Exception e){
 
         }
+
         btnMenu = findViewById(R.id.btnmenu4);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,7 +37,7 @@ public class MyProfile extends AppCompatActivity {
 
         }
         User user =(User) Vars.getUSER();
-        Toast.makeText(MyProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(MyProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
         imageProfile = findViewById(R.id.imageProfile);
         nameProfile = findViewById(R.id.nameProfile);
         btnMyAnimals = findViewById(R.id.btnMyAnimals);
