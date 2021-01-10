@@ -12,15 +12,17 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:background="@mipmap/back2_background">
 
         <ImageView
             android:id="@+id/imageAniamlHome"
             android:layout_width="158dp"
             android:layout_height="139dp"
             android:layout_weight="1"
+            android:layout_margin="10dp"
             android:background="@drawable/circle"
-            android:src="@mipmap/ic_logo_foreground" />
+            android:src="@drawable/cat" />
 
         <LinearLayout
             android:layout_weight="1"
