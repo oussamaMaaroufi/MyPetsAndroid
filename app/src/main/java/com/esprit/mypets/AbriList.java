@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +27,7 @@ public class AbriList extends AppCompatActivity {
     public static ArrayList<Abris> abrises = new ArrayList<Abris>();
     private RecyclerView recyclerView ;
     private MyAdapterAbri adapterAbri;
-    Button btnMenu;
+    ImageButton btnMenu;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiceAbri iServiceAbri =retrofitClient.create(IServiceAbri.class);
     @Override
@@ -41,7 +42,7 @@ public class AbriList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         adapterAbri = new MyAdapterAbri(this,abrises);
         recyclerView.setAdapter(adapterAbri);
-     /*   btnMenu= findViewById(R.id.buttonMenuAbri);
+        btnMenu= findViewById(R.id.btnmenu5);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +51,7 @@ public class AbriList extends AppCompatActivity {
             }
         });
 
-      */
+
 
     }
     public static void getListAbris (IServiceAbri iServiceAbri){

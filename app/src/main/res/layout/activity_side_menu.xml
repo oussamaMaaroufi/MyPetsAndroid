@@ -64,13 +64,7 @@
             android:backgroundTint="@color/gray"
             android:text="LOST And found"
             android:textColor="@color/black" />
-        <Button
-            android:id="@+id/MenuFound"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:text="FOUND"
-            android:textColor="@color/black" />
+
         <Button
             android:id="@+id/MenuVeterinaire"
             android:layout_width="match_parent"
