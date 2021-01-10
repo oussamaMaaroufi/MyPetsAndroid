@@ -68,6 +68,10 @@ public class MyAdapterVeterinaire extends RecyclerView.Adapter<MyAdapterVeterina
             imageView = itemView.findViewById(R.id.imageVeterianireHome);
             nomAnimal = itemView.findViewById(R.id.nameVeterinaireHome);
 
+            itemView.setOnClickListener(v -> {
+
+            });
+
 
         }
 
