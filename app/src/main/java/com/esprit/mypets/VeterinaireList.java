@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
@@ -25,20 +28,33 @@ public class VeterinaireList extends AppCompatActivity {
     public static ArrayList<Veterinaires> veterinaires = new ArrayList<Veterinaires>();
     private RecyclerView recyclerView ;
     private MyAdapterVeterinaire adapterVeterinaire;
+    ImageButton btnMenu;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseVeterinaire iServiseVeterinaire =retrofitClient.create(IServiseVeterinaire.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veterinaire_list);
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+        }
         recyclerView = findViewById(R.id.veterinaireListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
         adapterVeterinaire = new MyAdapterVeterinaire(this,veterinaires);
 
         recyclerView.setAdapter(adapterVeterinaire);
-
+        btnMenu= findViewById(R.id.btnmenu5);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VeterinaireList.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
 
     public static void getListVeterinaires (IServiseVeterinaire iServiseVeterinaire){

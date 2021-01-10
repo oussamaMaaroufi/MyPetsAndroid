@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
@@ -31,10 +34,14 @@ public class SideMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        getActionBar().setDisplayHomeAsUpEnabled( false );
+     //getActionBar().setDisplayHomeAsUpEnabled( false );
     //    getActionBar().setDisplayShowTitleEnabled( false );
 
-        
+        try {
+            this.getSupportActionBar().hide();
+        }catch (Exception e){
+
+        }
 
         setContentView(R.layout.activity_side_menu);
         home = findViewById(R.id.MenuHome);
@@ -61,6 +68,7 @@ public class SideMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         lost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +90,16 @@ public class SideMenu extends AppCompatActivity {
                 Intent intent = new Intent(SideMenu.this,AbriList.class);
                 startActivity(intent);
             }
+        });
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
+        logout.setOnClickListener(v -> {
+            editor.clear(); //editor.remove("name");
+            editor.commit();
+            Toast.makeText(SideMenu.this, "Logout", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SideMenu.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
 
