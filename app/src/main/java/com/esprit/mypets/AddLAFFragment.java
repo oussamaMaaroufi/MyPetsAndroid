@@ -1,5 +1,6 @@
 package com.esprit.mypets;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -35,6 +36,7 @@ public class AddLAFFragment extends Fragment {
     private Button save,Uplode;
     private RadioButton lost,found;
     private RadioGroup radioGroup;
+    private Context context = getContext();
     Retrofit retrofitClient = RetrofitClient.getInstance();
 
 
@@ -98,10 +100,10 @@ public class AddLAFFragment extends Fragment {
         Uplode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"test",Toast.LENGTH_LONG);
+                Toast.makeText(getContext(),Vars.getUSER().getId(),Toast.LENGTH_LONG);
             }
         });
-
+        Toast.makeText(getActivity().getApplicationContext(),  Vars.getUSER().toString(), Toast.LENGTH_LONG).show();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,15 +112,16 @@ public class AddLAFFragment extends Fragment {
 
                 LostAndFound lostAndFound = new LostAndFound();
                 lostAndFound.setIdUser(Vars.getUSER().getId());
+
                 lostAndFound.setUserName(Vars.getUSER().getName());
-             //   Toast.makeText(getActivity(),lostAndFound.toString(),Toast.LENGTH_LONG);
+
                 if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFLost){
                     lostAndFound.setType("Lost");
                 }else if(radioGroup.getCheckedRadioButtonId()== R.id.AddLAFFound){
                     lostAndFound.setType("Found");
                 }else{
                     b = false;
-                    Toast.makeText(v.getContext(),"type is required",Toast.LENGTH_LONG);
+                    Toast.makeText(context,"type is required",Toast.LENGTH_LONG);
                 }
 
                 if(!Desc.getText().toString().isEmpty()){

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     Vars.setPhone(pref.getString("phone","phone"));
                     Vars.setAddress(pref.getString("Adresse","Adresse"));
                     Vars.setImage(pref.getString("Image","image"));
-
+                    Toast.makeText(MainActivity.this,  pref.getString("id","tt"), Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);

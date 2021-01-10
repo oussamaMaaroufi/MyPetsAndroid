@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceLAF;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
@@ -21,6 +22,7 @@ import com.esprit.mypets.entyityResponse.AnimalResponseList;
 import com.esprit.mypets.entyityResponse.LostFoundResponseList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,6 +90,7 @@ public class FoundFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_found, container, false);
 
         recyclerView = v.findViewById(R.id.FoundRecycle);
+        Toast.makeText(getActivity().getApplicationContext(), "Toast test", Toast.LENGTH_SHORT).show();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
        // fillData();
@@ -114,6 +117,7 @@ public class FoundFragment extends Fragment {
                 } else {
                     if(response.body().getSuccess().equals("true")) {
                         FoundFragment.lostAndFounds = response.body().getLostAndFound();
+                        Collections.reverse(lostAndFounds);
                     }
                 }
 
