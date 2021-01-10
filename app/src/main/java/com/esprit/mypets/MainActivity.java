@@ -47,30 +47,29 @@ public class MainActivity extends AppCompatActivity {
         joinUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent =new Intent(MainActivity.this,LoginActivity.class);
+                if(pref.contains("id")){
+                    User user = new User();
+                    user.setType(pref.getString("type","Type"));
+                    user.setId(pref.getString("id","id"));
+                    user.setEmail(pref.getString("email","email"));
+                    user.setName(pref.getString("name","name"));
+                    Vars.setUSER(user);
+                    Vars.setPhone(pref.getString("phone","phone"));
+                    Vars.setAddress(pref.getString("Adresse","Adresse"));
+                    Vars.setImage(pref.getString("Image","image"));
+
+
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
+
+                }else {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
-        Toast.makeText(MainActivity.this,  pref.getString("id","tt"), Toast.LENGTH_LONG).show();
-        if(pref.contains("nem")){
-            User user = new User();
-            user.setType(pref.getString("type","Type"));
-            user.setId(pref.getString("id","id"));
-            user.setEmail(pref.getString("email","email"));
-            user.setName(pref.getString("name","name"));
-            Vars.setUSER(user);
-            Vars.setPhone(pref.getString("phone","phone"));
-            Vars.setAddress(pref.getString("Adresse","Adresse"));
-            Vars.setImage(pref.getString("Image","Adresse"));
-
-
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-
-        }
-
 
 
 
