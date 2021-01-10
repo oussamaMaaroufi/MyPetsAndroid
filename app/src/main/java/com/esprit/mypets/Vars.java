@@ -5,9 +5,18 @@ import com.esprit.mypets.entity.User;
 public class Vars {
 
     private static User USER ;
-    private static String URL="http://192.168.1.3:3000/";
+    private static String URL="http://192.168.1.9:3000/";
     private static String phone;
     private static String address;
+    private static String image;
+
+    public static String getImage() {
+        return image;
+    }
+
+    public static void setImage(String image) {
+        Vars.image = image;
+    }
 
     public static String getPhone() {
         return phone;

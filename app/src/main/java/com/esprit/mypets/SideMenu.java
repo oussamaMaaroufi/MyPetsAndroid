@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class SideMenu extends AppCompatActivity {
 
 //        getActionBar().setDisplayHomeAsUpEnabled( false );
     //    getActionBar().setDisplayShowTitleEnabled( false );
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         
 
@@ -45,6 +48,15 @@ public class SideMenu extends AppCompatActivity {
         logout = findViewById(R.id.MenuLogout);
         VeterinaireList.getListVeterinaires(iServiseVeterinaire);
         AbriList.getListAbris(iServiceAbri);
+
+
+
+        logout.setOnClickListener(v -> {
+            editor.clear();
+            editor.commit();
+            Intent intent = new Intent(SideMenu.this, MainActivity.class);
+            startActivity(intent);
+        });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
