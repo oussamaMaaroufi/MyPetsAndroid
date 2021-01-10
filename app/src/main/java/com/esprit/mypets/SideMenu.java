@@ -102,8 +102,7 @@ public class SideMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
-        final SharedPreferences.Editor editor = pref.edit();
+
         logout.setOnClickListener(v -> {
             editor.clear(); //editor.remove("name");
             editor.commit();
