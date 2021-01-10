@@ -19,6 +19,7 @@ import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.LostFoundResponseList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,6 +112,7 @@ public class LostFragment extends Fragment {
                 } else {
                     if(response.body().getSuccess().equals("true")) {
                         LostFragment.lostAndFounds = response.body().getLostAndFound();
+                        Collections.reverse(lostAndFounds);
                     }
                 }
 

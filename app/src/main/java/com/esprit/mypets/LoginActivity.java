@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private Button btntSignInGoogle;
     private Button btnRegister;
-   // private AppDatabase database;
+    // private AppDatabase database;
 
     IServieceUser iServieceUser;
     private IServiceAbri iServeceAbri;
@@ -44,8 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
 
-   private SharedPreferences.Editor editor ;
-  IServiseAnimal iServiseAnimal =retrofit.create(IServiseAnimal.class);
+    IServiseAnimal iServiseAnimal = retrofit.create(IServiseAnimal.class);
 
 
     @Override
@@ -57,28 +56,27 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btnRegister =findViewById(R.id.btnRegister);
+        btnRegister = findViewById(R.id.btnRegister);
         btnSignIn = findViewById(R.id.btnSignIn);
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
-         email = findViewById(R.id.TxtEmail);
-        password =findViewById(R.id.TxtPassword);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
-        final SharedPreferences.Editor editor = pref.edit();
+        email = findViewById(R.id.TxtEmail);
+        password = findViewById(R.id.TxtPassword);
+
 
         try {
             this.getSupportActionBar().hide();
-        }catch (Exception e){
+        } catch (Exception e) {
         }
-     ///   database = AppDatabase.getInstance(this);
+        ///   database = AppDatabase.getInstance(this);
 
         //Init service
 
-        iServieceUser =retrofit.create(IServieceUser.class);
+        iServieceUser = retrofit.create(IServieceUser.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -90,22 +88,24 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(email.getText().toString(), password.getText().toString());
 
 
+
             }
         });
 
 
+
     }
-    private  void loginUser(String email,String password){
-        if(email.isEmpty()){
-            Toast.makeText(this,"Email cannot be null or empyt",Toast.LENGTH_SHORT).show();
-        }else
-        if(password.isEmpty()){
-            Toast.makeText(this,"password cannot be null or empyt",Toast.LENGTH_SHORT).show();
-        }else if(!email.isEmpty() && !password.isEmpty() ){
+
+    private void loginUser(String email, String password) {
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Email cannot be null or empyt", Toast.LENGTH_SHORT).show();
+        } else if (password.isEmpty()) {
+            Toast.makeText(this, "password cannot be null or empyt", Toast.LENGTH_SHORT).show();
+        } else if (!email.isEmpty() && !password.isEmpty()) {
             User user = new User(email, password);
 
             try {
-               // Toast.makeText(LoginActivity.this, email + " " + password, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(LoginActivity.this, email + " " + password, Toast.LENGTH_SHORT).show();
 
                 Call<UserResponse> call = iServieceUser.loginUser(user);
                 call.enqueue(new Callback<UserResponse>() {
@@ -113,14 +113,17 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         if (!response.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
-                           // Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this,response.errorBody().toString()+"Password or Email is not correct", Toast.LENGTH_SHORT).show();
 
-                        }else {
-                             UserResponse userResponse = response.body();
+                        } else {
+
+                            UserResponse userResponse = response.body();
                             User user = userResponse.getUser();
+                            Toast.makeText(LoginActivity.this,user.toString() , Toast.LENGTH_SHORT).show();
                             Vars.setUSER(user);
+                            //SaveUser(user);
                             HomeActivity.getAllAnimals(iServiseAnimal);
-                            //Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
                             if (user.getType().equals("Volontaires")) {
                                 iServiseVolontaires = retrofit.create(IServiseVolontaires.class);
                                 Volontaires volontaires = new Volontaires();
@@ -138,7 +141,6 @@ public class LoginActivity extends AppCompatActivity {
                                 GetProfilVeto(veterinaires);
 
                             }
-
 
 
                         }
@@ -159,126 +161,129 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private  void GetProfilVolo(Volontaires volontaires){
+    private void GetProfilVolo(Volontaires volontaires) {
 
         try {
             Call<VolontairesResponse> call = iServiseVolontaires.GetVeterinairesbyId(volontaires);
             call.enqueue(new Callback<VolontairesResponse>() {
                 @Override
                 public void onResponse(Call<VolontairesResponse> call, Response<VolontairesResponse> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                         //       ErrorTxt.setText("Code : "+response.code());
                     }
-                    VolontairesResponse volontairesResponse =response.body();
-                    if (volontairesResponse.getSuccess().equals("true")){
+                    VolontairesResponse volontairesResponse = response.body();
+                    if (volontairesResponse.getSuccess().equals("true")) {
                         Vars.setAddress(volontairesResponse.getVolontaires().getAdresse());
                         Vars.setPhone(volontairesResponse.getVolontaires().getTelephon());
-
+                        Vars.setImage(volontairesResponse.getVolontaires().getImage());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
-                    }else {
+                    } else {
 
-                     //   Toast.makeText(LoginActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(LoginActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<VolontairesResponse> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
-    private  void GetProfilAbri(Abris abris){
+
+    private void GetProfilAbri(Abris abris) {
 
         try {
             Call<AbriResponse> call = iServeceAbri.GetAbrilbyId(abris);
             call.enqueue(new Callback<AbriResponse>() {
                 @Override
                 public void onResponse(Call<AbriResponse> call, Response<AbriResponse> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                         //       ErrorTxt.setText("Code : "+response.code());
                     }
-                    AbriResponse abriResponse =response.body();
-                    if (abriResponse.getSuccess().equals("true")){
+                    AbriResponse abriResponse = response.body();
+                    if (abriResponse.getSuccess().equals("true")) {
                         Vars.setAddress(abriResponse.getAbris().getAdresse());
                         Vars.setPhone(abriResponse.getAbris().getTelephon());
+                        Vars.setImage(abriResponse.getAbris().getImage());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
 
-                    }else {
-                      //  Toast.makeText(LoginActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        //  Toast.makeText(LoginActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<AbriResponse> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
-    private  void GetProfilVeto(Veterinaires veterinaires){
+
+    private void GetProfilVeto(Veterinaires veterinaires) {
 
         try {
             Call<VeterinairesResponse> call = iServiseVeterinaire.GetVeterinairesById(veterinaires);
             call.enqueue(new Callback<VeterinairesResponse>() {
                 @Override
                 public void onResponse(Call<VeterinairesResponse> call, Response<VeterinairesResponse> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(LoginActivity.this,"Error ", Toast.LENGTH_SHORT).show();
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Error ", Toast.LENGTH_SHORT).show();
                         //       ErrorTxt.setText("Code : "+response.code());
                     }
-                    VeterinairesResponse veterinairesResponse =response.body();
-                    if (veterinairesResponse.getSuccess().equals("true")){
+                    VeterinairesResponse veterinairesResponse = response.body();
+                    if (veterinairesResponse.getSuccess().equals("true")) {
+
                         Vars.setAddress(veterinairesResponse.getVeterinaires().getAdresse());
                         Vars.setPhone(veterinairesResponse.getVeterinaires().getTelephon());
+                        Vars.setImage(veterinairesResponse.getVeterinaires().getImage());
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
-                    }else {
-                //        Toast.makeText(LoginActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        //        Toast.makeText(LoginActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<VeterinairesResponse> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    public void SaveUser (User user){
 
-        editor.putString("name",user.getName());
-        editor.putString("email",user.getEmail());
-        editor.putString("type",user.getType());
 
-        editor.commit();
-    }
+
 
 }

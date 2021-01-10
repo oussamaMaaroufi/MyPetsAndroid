@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.esprit.mypets.entity.Animal;
+import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.AnimalResponseList;
 
@@ -40,16 +41,35 @@ public class MainActivity extends AppCompatActivity {
         }
         HomeActivity.getAllAnimals(iServiseAnimal);
 
+        
+
         joinUs = findViewById(R.id.joinUs);
         joinUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent =new Intent(MainActivity.this,LoginActivity.class);
+                if(pref.contains("id")){
+                    User user = new User();
+                    user.setType(pref.getString("type","Type"));
+                    user.setId(pref.getString("id","id"));
+                    user.setEmail(pref.getString("email","email"));
+                    user.setName(pref.getString("name","name"));
+                    Vars.setUSER(user);
+                    Vars.setPhone(pref.getString("phone","phone"));
+                    Vars.setAddress(pref.getString("Adresse","Adresse"));
+                    Vars.setImage(pref.getString("Image","image"));
+                    Toast.makeText(MainActivity.this,  pref.getString("id","tt"), Toast.LENGTH_LONG).show();
 
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
+                    finish();
+
+                }else {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
-
 
 
 

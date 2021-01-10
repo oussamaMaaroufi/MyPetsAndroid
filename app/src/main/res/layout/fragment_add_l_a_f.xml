@@ -49,6 +49,7 @@
             <RadioButton
                 android:layout_marginLeft="20dp"
                 android:id="@+id/AddLAFLost"
+                android:checked="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lost" />

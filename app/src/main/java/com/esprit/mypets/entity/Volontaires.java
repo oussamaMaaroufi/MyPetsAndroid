@@ -1,8 +1,6 @@
 package com.esprit.mypets.entity;
 
-import java.util.List;
-
-public class Volontaires {
+public class Volontaires  {
 
     private String id;
     private String IdUser;
@@ -10,6 +8,7 @@ public class Volontaires {
     private String Adresse;
     private String telephon;
     private String image;
+
 
 
     public String getId() {

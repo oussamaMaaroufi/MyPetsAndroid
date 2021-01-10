@@ -50,12 +50,24 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
       //  btnLAF= findViewById(R.id.btnLostAndfound);
 
         try {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
+        User user = Vars.getUSER();
+        editor.putString("id", user.getId());
+        editor.putString("name", user.getName());
+        editor.putString("email", user.getEmail());
+        editor.putString("type", user.getType());
+        editor.putString("Adresse", Vars.getAddress());
+        editor.putString("Image", Vars.getImage());
+        editor.putString("phone", Vars.getPhone());
+        Toast.makeText(HomeActivity.this,  pref.getString("id","tt"), Toast.LENGTH_LONG).show();
+        editor.commit();
 
         btnMenu= findViewById(R.id.btnmenu1);
         btnMenu.setOnClickListener(new View.OnClickListener() {
