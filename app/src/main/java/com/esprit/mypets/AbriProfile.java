@@ -16,7 +16,9 @@ import com.esprit.mypets.Retrofit.IServiceAbri;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.RetrofitClient;
+import com.esprit.mypets.entity.Abris;
 import com.esprit.mypets.entity.User;
+import com.esprit.mypets.entity.Veterinaires;
 
 import retrofit2.Retrofit;
 
@@ -53,6 +55,21 @@ public class AbriProfile extends AppCompatActivity {
         phone.setText(Vars.getPhone());
         //MyAnimals.getAllAbriAnimals(iServiseAnimal);
 
+        Intent intent =getIntent();
+
+        Abris v = new Abris();
+
+        //  v.setId(intent.getStringExtra("id"));
+        v.setIdUser(intent.getStringExtra("IUser"));
+        v.setName(intent.getStringExtra("Name"));
+        v.setAdresse(intent.getStringExtra("Adresse"));
+        v.setImage(intent.getStringExtra("image"));
+        v.setTelephon(intent.getStringExtra("phone"));
+
+        nameProfile.setText(v.getName());
+        address.setText(v.getAdresse());
+        phone.setText(v.getTelephon());
+        imageProfile.setImageResource(R.mipmap.ic_logo_foreground);
 
         btnAnimals.setOnClickListener(new View.OnClickListener() {
             @Override

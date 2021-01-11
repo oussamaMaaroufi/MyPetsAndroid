@@ -42,16 +42,7 @@ public class AbriList extends AppCompatActivity {
         }
         setContentView(R.layout.activity_abri_list);
         recyclerView = findViewById(R.id.abriListRecycler);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
-        final SharedPreferences.Editor editor = pref.edit();
 
-        Abris user = new Abris();
-        editor.putString("id", user.getId());
-        editor.putString("name", user.getName());
-        editor.putString("Adresse", user.getAdresse());
-        editor.putString("Image", user.getImage());
-        editor.putString("Telephon", user.getTelephon());
-        editor.commit();
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -59,10 +50,6 @@ public class AbriList extends AppCompatActivity {
         adapterAbri = new MyAdapterAbri(this,abrises);
         recyclerView.setAdapter(adapterAbri);
 
-        if(!AbriList.abrises.isEmpty()) {
-            adapterAbri = new MyAdapterAbri(getApplicationContext(), AbriList.abrises);
-            recyclerView.setAdapter(adapterAbri);
-        }
 
 
         btnMenu= findViewById(R.id.btnmenu5);

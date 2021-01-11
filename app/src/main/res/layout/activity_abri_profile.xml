@@ -90,7 +90,7 @@
                 android:id="@+id/btnMyAnimalsAbri"
                 android:layout_width="118dp"
                 android:layout_height="59dp"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:text="Animals"
                 android:textColor="@color/black" />
 
@@ -115,6 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="Email"
                 android:textColor="@color/black"
                 android:textSize="13sp">
@@ -126,6 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-light">
@@ -151,6 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone"
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="13sp">
 
@@ -161,6 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-light">
@@ -186,6 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Facebook "
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="13sp">
 
@@ -196,6 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-light">
@@ -221,6 +227,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address"
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="13sp">
 
@@ -231,6 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-light">

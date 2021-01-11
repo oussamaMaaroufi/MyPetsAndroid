@@ -40,7 +40,6 @@ public class Adoption extends AppCompatActivity {
     private Context myContext = this;
     private TextView race,type,name;
     private Button AddAdoption,RemoveAdoption,Delete;
-    ImageButton btnMenu;
     private Animal animal = new Animal();
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
@@ -99,14 +98,7 @@ public class Adoption extends AppCompatActivity {
         AddAdoption.setOnClickListener(v -> {
 
         });
-        btnMenu= findViewById(R.id.btnmenu11);
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Adoption.this,SideMenu.class);
-                startActivity(intent);
-            }
-        });
+
 
 
     }

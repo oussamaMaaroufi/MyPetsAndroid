@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
@@ -24,6 +26,14 @@ import com.esprit.mypets.entyityResponse.AbriResponse;
 import com.esprit.mypets.entyityResponse.UserResponse;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.squareup.picasso.Picasso;
+
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,8 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button btnSignIn;
-    private Button btntSignInGoogle;
+    private Button btnFacebook;
+
     private Button btnRegister;
+    private CallbackManager callbackManager;
     // private AppDatabase database;
 
     IServieceUser iServieceUser;
@@ -43,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
     private Retrofit retrofit = RetrofitClient.getInstance();
-
+    private ImageView profil;
     IServiseAnimal iServiseAnimal = retrofit.create(IServiseAnimal.class);
 
 
@@ -56,12 +68,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         btnRegister = findViewById(R.id.btnRegister);
         btnSignIn = findViewById(R.id.btnSignIn);
-        btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
+        btnFacebook = findViewById(R.id.btnSignInGoogle);
         email = findViewById(R.id.TxtEmail);
         password = findViewById(R.id.TxtPassword);
 
+        profil=(ImageView) findViewById(R.id.profil);
 
         try {
             this.getSupportActionBar().hide();
@@ -91,7 +105,17 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(LoginActivity.this, FacebookActivity.class);
+                startActivity(intent);
+
+
+
+            }
+        });
 
 
     }
