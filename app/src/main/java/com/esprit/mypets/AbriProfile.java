@@ -41,7 +41,6 @@ public class AbriProfile extends AppCompatActivity {
         Toast.makeText(AbriProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
         imageProfile = findViewById(R.id.imageProfileAbri);
         nameProfile = findViewById(R.id.nameProfileAbri);
-        aboutMe = findViewById(R.id.aboutMeAbri);
         address = findViewById(R.id.addressProfileAbri);
         Email = findViewById(R.id.emailProfileAbri);
         phone = findViewById(R.id.phoneProfileAbri);
@@ -54,13 +53,6 @@ public class AbriProfile extends AppCompatActivity {
         phone.setText(Vars.getPhone());
         //MyAnimals.getAllAbriAnimals(iServiseAnimal);
 
-        aboutMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AbriProfile.this, AbriProfile.class);
-                startActivity(intent);
-            }
-        });
 
         btnAnimals.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class Adoption extends AppCompatActivity {
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
     IServieceUser iServieceUser = retrofitClient.create(IServieceUser.class);
+    private ImageButton btnMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +42,23 @@ public class Adoption extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
+
+        btnMenu = findViewById(R.id.btnmenu10);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Adoption.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
+        
+        
+        
+        
         animal.setId(intent.getStringExtra("id"));
         animal.setIdUser(intent.getStringExtra("IUser"));
         animal.setName(intent.getStringExtra("Name"));
-        animal.setRace(intent.getStringExtra("Rece"));
+        animal.setRace(intent.getStringExtra("Race"));
         animal.setImage(intent.getStringExtra("image"));
         animal.setType(intent.getStringExtra("Type"));
 
