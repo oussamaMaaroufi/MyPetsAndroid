@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,9 @@ import retrofit2.Retrofit;
 public class VeterinaireProfile extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageProfile;
+    Button call;
+    Veterinaires v;
+    public  String ph = "00";
     TextView nameProfile,address,Email,phone,facebook;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseVeterinaire iServiseVeterinaire =retrofitClient.create(IServiseVeterinaire.class);
@@ -33,6 +37,7 @@ public class VeterinaireProfile extends AppCompatActivity {
         Toast.makeText(VeterinaireProfile.this,  user.toString(), Toast.LENGTH_LONG).show();
         imageProfile = findViewById(R.id.imageProfileVeto);
         nameProfile = findViewById(R.id.nameProfileVeto);
+        call = findViewById(R.id.CallVeto);
 
 
 
@@ -49,7 +54,9 @@ public class VeterinaireProfile extends AppCompatActivity {
 
         Intent intent =getIntent();
 
-        Veterinaires v = new Veterinaires();
+       v = new Veterinaires();
+
+       ph = v.getTelephon();
 
       //  v.setId(intent.getStringExtra("id"));
         v.setIdUser(intent.getStringExtra("IUser"));
@@ -62,6 +69,12 @@ public class VeterinaireProfile extends AppCompatActivity {
         address.setText(v.getAdresse());
         phone.setText(v.getTelephon());
         imageProfile.setImageResource(R.mipmap.ic_logo_foreground);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ ph)));
+            }
+        });
 
 
 
