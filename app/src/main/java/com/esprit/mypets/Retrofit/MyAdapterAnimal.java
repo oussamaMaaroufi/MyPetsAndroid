@@ -21,9 +21,20 @@ import com.esprit.mypets.entity.Animal;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Retrofit;
+
 public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyViewHolder> {
     private Context myContext;
     private ArrayList<Animal> animals = new ArrayList<Animal>();
+
+    private Retrofit retrofit = RetrofitClient.getInstance();
+
+    IServiceAbri iServiceAbri =retrofit.create(IServiceAbri.class);
+    IServiseVeterinaire iServiseVeterinaire =retrofit.create(IServiseVeterinaire.class);
+    IServiseVolontaires iServiseVolontaires = retrofit.create(IServiseVolontaires.class);
+    IServieceUser iServieceUser =retrofit.create(IServieceUser.class);
+
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -64,7 +75,7 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myContext,animal.getName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(myContext,animal.getName(), Toast.LENGTH_SHORT).show();
                Intent intent =new Intent(myContext, ProfileAnimal.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -75,6 +86,8 @@ public class MyAdapterAnimal extends RecyclerView.Adapter<MyAdapterAnimal.MyView
                 intent.putExtra("image",animal.getImage());
                 intent.putExtra("IdUser",animal.getIdUser());
                 myContext.getApplicationContext().startActivity(intent);
+
+                ProfileAnimal.getUserInfo(animal.getIdUser(),iServieceUser,iServiceAbri,iServiseVeterinaire,iServiseVolontaires);
 
 
             }

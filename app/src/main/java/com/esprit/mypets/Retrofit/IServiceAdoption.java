@@ -2,6 +2,8 @@ package com.esprit.mypets.Retrofit;
 
 import com.esprit.mypets.entity.Abris;
 import com.esprit.mypets.entity.Adoption;
+import com.esprit.mypets.entyityResponse.AdoptionResponse;
+import com.esprit.mypets.entyityResponse.AdoptionResponseList;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
 
 import retrofit2.Call;
@@ -11,9 +13,12 @@ import retrofit2.http.POST;
 public interface IServiceAdoption {
 
     @POST("adoption/add")
-    Call<VolontairesResponse> AddAdoption(@Body Adoption adoption);
+    Call<AdoptionResponse> AddAdoption(@Body Adoption adoption);
 
     @POST("adoption/get")
-    Call<VolontairesResponse> GetAdoptionlbyId(@Body Adoption adoption);
+    Call<AdoptionResponse> GetAdoptionById(@Body Adoption adoption);
+
+    @POST("adoption/list")
+    Call<AdoptionResponseList> GetAllAdoption();
 
 }

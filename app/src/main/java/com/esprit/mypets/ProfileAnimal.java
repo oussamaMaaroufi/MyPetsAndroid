@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
 import com.esprit.mypets.Retrofit.IServieceUser;
@@ -36,6 +37,9 @@ public class ProfileAnimal extends AppCompatActivity {
     private ImageView imageView;
     private  String userId;
     ImageButton btnMenu;
+    public static String owne;
+    public static String phone;
+    public static String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +75,14 @@ public class ProfileAnimal extends AppCompatActivity {
         Rase.setText(a.getRace());
         type.setText(a.getType());
 
-        info.setOnClickListener(v -> {
+        owner.setText(owne);
+        Address.setText(address);
 
+
+        info.setOnClickListener(v -> {
+            Toast.makeText(ProfileAnimal.this,owne,Toast.LENGTH_SHORT).show();
+            owner.setText(owne);
+            Address.setText(address);
 
         });
 
@@ -90,7 +100,7 @@ public class ProfileAnimal extends AppCompatActivity {
 
     }
 
-    public static void getUserInfo(String idUser, IServieceUser iServieceUser, IServiceAbri iServiceAbri, IServiseVeterinaire iServiseVeterinaire, IServiseVolontaires iServiseVolontaires){
+    public static  void getUserInfo(String idUser, IServieceUser iServieceUser, IServiceAbri iServiceAbri, IServiseVeterinaire iServiseVeterinaire, IServiseVolontaires iServiseVolontaires){
 
         User user = new User();
         user.setId(idUser);
@@ -106,7 +116,7 @@ public class ProfileAnimal extends AppCompatActivity {
 
                     if(user1.getType().equals("Abris")){
                         Abris a = new Abris();
-                        a.setId(user1.getId());
+                        a.setIdUser(user1.getId());
                         Call<AbriResponse> call1 =  iServiceAbri.GetAbrilbyId(a);
                         call1.enqueue(new Callback<AbriResponse>() {
                             @Override
@@ -114,6 +124,9 @@ public class ProfileAnimal extends AppCompatActivity {
                                 if (!response.isSuccessful()){
 
                                 }else {
+                                    ProfileAnimal.owne = response.body().getAbris().getName();
+                                    ProfileAnimal.address = response.body().getAbris().getAdresse();
+                                    ProfileAnimal.phone = response.body().getAbris().getTelephon();
 
                                 }
 
@@ -135,6 +148,9 @@ public class ProfileAnimal extends AppCompatActivity {
                                 if (!response.isSuccessful()){
 
                                 }else {
+                                    ProfileAnimal.owne = response.body().getVeterinaires().getName();
+                                    ProfileAnimal.address = response.body().getVeterinaires().getAdresse();
+                                    ProfileAnimal.phone = response.body().getVeterinaires().getTelephon();
 
                                 }
                             }
@@ -157,6 +173,9 @@ public class ProfileAnimal extends AppCompatActivity {
 
 
                                 }else {
+                                    ProfileAnimal.owne = response.body().getVolontaires().getName();
+                                    ProfileAnimal.address = response.body().getVolontaires().getAdresse();
+                                    ProfileAnimal.phone = response.body().getVolontaires().getTelephon();
 
                                 }
                             }

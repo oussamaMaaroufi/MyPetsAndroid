@@ -34,7 +34,7 @@
             >
 
             <TextView
-                android:id="@+id/nameAniamlHome"
+                android:id="@+id/nameAniamlHome1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/raceAnimalHome"
+                android:id="@+id/raceAnimalHome1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

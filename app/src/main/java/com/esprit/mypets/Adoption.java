@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
+import com.esprit.mypets.Retrofit.IServiceAdoption;
 import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
@@ -23,6 +24,7 @@ import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entity.Veterinaires;
 import com.esprit.mypets.entity.Volontaires;
 import com.esprit.mypets.entyityResponse.AbriResponse;
+import com.esprit.mypets.entyityResponse.AdoptionResponse;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.AnimalResponseList;
 import com.esprit.mypets.entyityResponse.UserResponse;
@@ -47,6 +49,7 @@ public class Adoption extends AppCompatActivity {
     IServiseVolontaires iServiseVolontaires = retrofitClient.create(IServiseVolontaires.class);
     IServiseVeterinaire iServiseVeterinaire = retrofitClient.create(IServiseVeterinaire.class);
     IServiceAbri  iServiceAbri = retrofitClient.create(IServiceAbri.class);
+    IServiceAdoption iServiceAdoption =  retrofitClient.create(IServiceAdoption.class);
     private ImageButton btnMenu;
 
     @Override
@@ -96,6 +99,35 @@ public class Adoption extends AppCompatActivity {
         });
 
         AddAdoption.setOnClickListener(v -> {
+            com.esprit.mypets.entity.Adoption adoption = new com.esprit.mypets.entity.Adoption();
+            adoption.setIdUser(Vars.getUSER().getId());
+            adoption.setIdAnimal(animal.getId());
+            adoption.setImage(animal.getImage());
+            adoption.setNameAnimal(animal.getName());
+
+            Call<AdoptionResponse> call= iServiceAdoption.AddAdoption(adoption);
+            call.enqueue(new Callback<AdoptionResponse>() {
+                @Override
+                public void onResponse(Call<AdoptionResponse> call, Response<AdoptionResponse> response) {
+                    if(!response.isSuccessful()){
+
+                    }else {
+
+                        HomeActivity.getAllAnimals(iServiseAnimal,iServiceAdoption);
+
+                        Intent intent = new Intent(Adoption.this, HomeActivity.class);
+                        startActivity(intent);
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AdoptionResponse> call, Throwable t) {
+
+                }
+            });
+
+
 
         });
 

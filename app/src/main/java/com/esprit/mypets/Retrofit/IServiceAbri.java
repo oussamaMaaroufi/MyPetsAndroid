@@ -20,6 +20,10 @@ public interface IServiceAbri {
     @POST("abri/auth")
     Call<AbriResponse> GetAbrilbyId(@Body Abris abris);
 
+    @POST("abri/get")
+    Call<AbriResponse> GetAbrilby(@Body Abris abris);
+
+
     @POST("abri/list")
     Call<AbriResponseList> GetAbris();
 }
