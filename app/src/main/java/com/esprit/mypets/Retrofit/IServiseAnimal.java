@@ -22,6 +22,10 @@ public interface IServiseAnimal {
     @POST("animal/get")
     Call<AnimalResponseList> GetAnimalbyIdUser(@Body User user);
 
+    @POST("animal/getById")
+    Call<AnimalResponse> GetAnimalbyId(@Body Animal animal);
+
+
     @POST("animal/list")
     Call<AnimalResponseList> GetAllAnimal();
 

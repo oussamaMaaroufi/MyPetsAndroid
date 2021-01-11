@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
+import com.esprit.mypets.Retrofit.IServiceAdoption;
 import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private IServiceAbri iServeceAbri;
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
+    private IServiceAdoption iServiceAdoption;
     private Retrofit retrofit = RetrofitClient.getInstance();
 
     IServiseAnimal iServiseAnimal = retrofit.create(IServiseAnimal.class);
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         btntSignInGoogle = findViewById(R.id.btnSignInGoogle);
         email = findViewById(R.id.TxtEmail);
         password = findViewById(R.id.TxtPassword);
+        iServiceAdoption = retrofit.create(IServiceAdoption.class);
 
 
         try {
@@ -122,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,user.toString() , Toast.LENGTH_SHORT).show();
                             Vars.setUSER(user);
                             //SaveUser(user);
-                            HomeActivity.getAllAnimals(iServiseAnimal);
+                            HomeActivity.getAllAnimals(iServiseAnimal,iServiceAdoption);
                             Toast.makeText(LoginActivity.this, Vars.getUSER().toString(), Toast.LENGTH_SHORT).show();
                             if (user.getType().equals("Volontaires")) {
                                 iServiseVolontaires = retrofit.create(IServiseVolontaires.class);

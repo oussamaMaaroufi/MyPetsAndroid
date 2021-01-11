@@ -14,6 +14,8 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
+import com.esprit.mypets.Retrofit.IServiceAdoption;
+import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +32,8 @@ public class SideMenu extends AppCompatActivity {
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseVeterinaire iServiseVeterinaire =retrofitClient.create(IServiseVeterinaire.class);
     IServiceAbri iServiceAbri = retrofitClient.create(IServiceAbri.class);
+    IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
+    IServiceAdoption iServiceAdoption =  retrofitClient.create(IServiceAdoption.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,7 @@ public class SideMenu extends AppCompatActivity {
         myanimals = findViewById(R.id.MenuMyAnimal);
         VeterinaireList.getListVeterinaires(iServiseVeterinaire);
         AbriList.getListAbris(iServiceAbri);
+        HomeActivity.getAllAnimals(iServiseAnimal,iServiceAdoption);
 
 
 

@@ -15,12 +15,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.esprit.mypets.Retrofit.IServiceAdoption;
 import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.MyAdapterAnimal;
 import com.esprit.mypets.Retrofit.RetrofitClient;
+import com.esprit.mypets.entity.Adoption;
 import com.esprit.mypets.entity.Animal;
 import com.esprit.mypets.entity.User;
+import com.esprit.mypets.entyityResponse.AdoptionResponseList;
 import com.esprit.mypets.entyityResponse.AnimalResponse;
 import com.esprit.mypets.entyityResponse.AnimalResponseList;
 import com.esprit.mypets.entyityResponse.UserResponse;
@@ -110,20 +113,54 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public static void getAllAnimals(IServiseAnimal iServiseAnimal){
-        //    ArrayList<Animal> list = new ArrayList<Animal>();
-        AnimalResponse animalResponse =new AnimalResponse();
+    public static void getAllAnimals(IServiseAnimal iServiseAnimal, IServiceAdoption iServiceAdoption){
 
-        Call<AnimalResponseList> call = iServiseAnimal.GetAllAnimal();
+        Call<AdoptionResponseList> call1 = iServiceAdoption.GetAllAdoption();
 
-        call.enqueue(new Callback<AnimalResponseList>() {
+        call1.enqueue(new Callback<AdoptionResponseList>() {
             @Override
-            public void onResponse(Call<AnimalResponseList> call, Response<AnimalResponseList> response) {
+            public void onResponse(Call<AdoptionResponseList> call, Response<AdoptionResponseList> response) {
+
                 if (!response.isSuccessful()){
-                  //  Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+
                 } else {
-                 //   Toast.makeText(HomeActivity.this,  response.body().getAnimal().get(0).toString()     , Toast.LENGTH_SHORT).show();
-                    HomeActivity.animals = response.body().getAnimal();
+
+                    ArrayList<Adoption> adoption = response.body().getAdoption();
+                    HomeActivity.animals.clear();
+
+                        for (int i =0;i<adoption.size();i++){
+                            Adoption a = adoption.get(i);
+                            Animal an = new Animal();
+                            an.setId(a.getIdAnimal());
+
+                            Call<AnimalResponse> call2 = iServiseAnimal.GetAnimalbyId(an);
+
+                            call2.enqueue(new Callback<AnimalResponse>() {
+                                @Override
+                                public void onResponse(Call<AnimalResponse> call, Response<AnimalResponse> response) {
+                                    if (!response.isSuccessful()){
+                                        //  Toast.makeText(HomeActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        //   Toast.makeText(HomeActivity.this,  response.body().getAnimal().get(0).toString()     , Toast.LENGTH_SHORT).show();
+                                        HomeActivity.animals.add(response.body().getAnimal());
+
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<AnimalResponse> call, Throwable t) {
+
+                                }
+                            });
+
+
+
+
+                    }
+
+
 
 
                 }
@@ -131,10 +168,13 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AnimalResponseList> call, Throwable t) {
+            public void onFailure(Call<AdoptionResponseList> call, Throwable t) {
 
             }
         });
+
+
+
     }
 
 

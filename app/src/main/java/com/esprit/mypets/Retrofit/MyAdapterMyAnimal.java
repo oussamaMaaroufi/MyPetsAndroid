@@ -46,8 +46,8 @@ public class MyAdapterMyAnimal extends RecyclerView.Adapter<MyAdapterMyAnimal.My
         public MyViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageAniamlHome);
-            nomAnimal = itemView.findViewById(R.id.nameAniamlHome);
-            raceAnimal = itemView.findViewById(R.id.raceAnimalHome);
+            nomAnimal = itemView.findViewById(R.id.nameAniamlHome1);
+            raceAnimal = itemView.findViewById(R.id.raceAnimalHome1);
         }
 
     }

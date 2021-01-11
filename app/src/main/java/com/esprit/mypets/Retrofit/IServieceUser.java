@@ -21,7 +21,7 @@ public interface IServieceUser {
         @POST("users/auth")
         Call<UserResponse> loginUser(@Body User user);
 
-        @POST("users/get")
+        @POST("users/getuser")
         Call<UserResponse> getUserbyID(@Body User user);
 
         @POST("uploadfile")

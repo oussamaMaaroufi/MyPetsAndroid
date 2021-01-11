@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.esprit.mypets.Retrofit.IServiceAdoption;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.RetrofitClient;
 import com.esprit.mypets.entity.Animal;
@@ -28,18 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private Button joinUs;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
-
+    private IServiceAdoption iServiceAdoption;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPetsUser", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
+
+        iServiceAdoption = retrofitClient.create(IServiceAdoption.class);
         try {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
-        HomeActivity.getAllAnimals(iServiseAnimal);
+        HomeActivity.getAllAnimals(iServiseAnimal,iServiceAdoption);
 
         
 
