@@ -86,13 +86,7 @@
             android:layout_gravity="center"
             >
 
-            <Button
-                android:id="@+id/aboutMeAbri"
-                android:layout_width="128dp"
-                android:layout_height="59dp"
-                android:layout_margin="5dp"
-                android:text="About Me"
-                android:textColor="@color/black" />
+
             <Button
                 android:id="@+id/btnMyAnimalsAbri"
                 android:layout_width="118dp"

@@ -60,6 +60,7 @@
             android:id="@+id/AddAnimal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="add animal" />
 
         <Button
@@ -68,6 +69,7 @@
             android:id="@+id/btnAfficheMyAnimals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="load List" />
     </LinearLayout>
 

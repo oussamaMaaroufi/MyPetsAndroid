@@ -95,6 +95,7 @@
             android:textColor="@color/black" />
 
     </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

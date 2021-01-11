@@ -70,4 +70,6 @@ public class Abris {
                 ", image='" + image + '\'' +
                 '}';
     }
+
+
 }

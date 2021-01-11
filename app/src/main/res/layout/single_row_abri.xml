@@ -12,15 +12,16 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="@mipmap/back2_background">
 
         <ImageView
             android:id="@+id/imageAbriHome"
             android:layout_width="158dp"
             android:layout_height="139dp"
             android:layout_weight="1"
-            android:background="@drawable/circle"
-            android:src="@mipmap/ic_logo_foreground" />
+            android:layout_margin="10dp"
+            android:src="@drawable/cat" />
 
 
         <TextView
@@ -29,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
+            android:gravity="center"
+            android:textColor="@color/black"
             android:text="name"
             android:textIsSelectable="true"
             android:textSize="20dp" />

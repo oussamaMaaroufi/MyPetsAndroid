@@ -31,6 +31,7 @@
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:text="Do you want to help us rescue some pets?"
+                    android:textStyle="italic"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 

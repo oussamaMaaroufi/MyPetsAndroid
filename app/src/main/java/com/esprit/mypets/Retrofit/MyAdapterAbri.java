@@ -50,8 +50,16 @@ public class MyAdapterAbri extends RecyclerView.Adapter<MyAdapterAbri.MyViewHold
                 //Toast.makeText(myContext,abris.getAdresse(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(myContext, AbriProfile.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                myContext.startActivity(intent);
+                intent.putExtra("Name",abris.getName());
+                intent.putExtra("id",abris.getId());
+                intent.putExtra("Adresse",abris.getAdresse());
+                intent.putExtra("telephon",abris.getTelephon());
+                intent.putExtra("image",abris.getImage());
+                intent.putExtra("IdUser",abris.getIdUser());
+                myContext.getApplicationContext().startActivity(intent);
+                //myContext.startActivity(intent);
 
             }
         });
