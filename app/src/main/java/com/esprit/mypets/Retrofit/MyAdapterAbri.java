@@ -71,6 +71,7 @@ public class MyAdapterAbri extends RecyclerView.Adapter<MyAdapterAbri.MyViewHold
             super(itemView);
             imageView = itemView.findViewById(R.id.imageAbriHome);
             nomAbris = itemView.findViewById(R.id.nameAbriHome);
+
             context = itemView.getContext();
 
         }

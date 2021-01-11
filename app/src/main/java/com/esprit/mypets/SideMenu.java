@@ -26,7 +26,7 @@ public class SideMenu extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    Button home,profile,lost,found,veterinaire,abri,logout;
+    Button home,profile,lost,found,veterinaire,abri,logout,myanimals;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseVeterinaire iServiseVeterinaire =retrofitClient.create(IServiseVeterinaire.class);
     IServiceAbri iServiceAbri = retrofitClient.create(IServiceAbri.class);
@@ -52,6 +52,7 @@ public class SideMenu extends AppCompatActivity {
         veterinaire = findViewById(R.id.MenuVeterinaire);
         abri = findViewById(R.id.MenuAbri);
         logout = findViewById(R.id.MenuLogout);
+        myanimals = findViewById(R.id.MenuMyAnimal);
         VeterinaireList.getListVeterinaires(iServiseVeterinaire);
         AbriList.getListAbris(iServiceAbri);
 
@@ -111,7 +112,13 @@ public class SideMenu extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
+        myanimals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SideMenu.this,MyAnimals.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

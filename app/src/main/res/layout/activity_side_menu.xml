@@ -15,22 +15,22 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@color/black"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="157dp"
+            android:layout_height="match_parent"
 
             android:src="@mipmap/ic_logo_foreground" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:layout_margin="60dp"
             android:text="MENU"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -55,7 +55,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray"
-            android:text="PROFILE"
+            android:text="my PROFILE"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/MenuMyAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray"
+            android:text="MY ANIMALS"
             android:textColor="@color/black" />
         <Button
             android:id="@+id/MenuLost"
