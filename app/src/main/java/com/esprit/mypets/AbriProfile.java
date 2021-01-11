@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class AbriProfile extends AppCompatActivity {
     ImageView imageProfile;
     TextView nameProfile,address,Email,phone,facebook;
     Button aboutMe,btnAnimals;
+    ImageButton btnMenu;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
     @Override
@@ -71,6 +73,14 @@ public class AbriProfile extends AppCompatActivity {
                 }
 
 
+            }
+        });
+        btnMenu = findViewById(R.id.btnmenu8);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AbriProfile.this,SideMenu.class);
+                startActivity(intent);
             }
         });
 

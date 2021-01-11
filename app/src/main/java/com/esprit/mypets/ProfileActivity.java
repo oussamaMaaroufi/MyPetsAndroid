@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.mypets.Retrofit.IServiceAbri;
+import com.esprit.mypets.Retrofit.IServieceUser;
 import com.esprit.mypets.Retrofit.IServiseAnimal;
 import com.esprit.mypets.Retrofit.IServiseVeterinaire;
 import com.esprit.mypets.Retrofit.IServiseVolontaires;
@@ -33,14 +35,20 @@ import com.esprit.mypets.entity.User;
 import com.esprit.mypets.entity.Veterinaires;
 import com.esprit.mypets.entity.Volontaires;
 import com.esprit.mypets.entyityResponse.AbriResponse;
+import com.esprit.mypets.entyityResponse.ResponseClass;
 import com.esprit.mypets.entyityResponse.VeterinairesResponse;
 import com.esprit.mypets.entyityResponse.VolontairesResponse;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,15 +65,19 @@ public class ProfileActivity extends AppCompatActivity {
     private IServiceAbri iServeceAbri;
     private IServiseVeterinaire iServiseVeterinaire;
     private IServiseVolontaires iServiseVolontaires;
+    private IServieceUser iServieceUser;
     private Retrofit retrofit = RetrofitClient.getInstance();
     private User user;
     private ImageView imgprofil;
     private ProgressDialog progressDialog;
+    private Uri ImageUri;
+    private String ImageName;
     Bitmap bitmap;
         @Override
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+            iServieceUser =retrofit.create(IServieceUser.class);
 
         name = findViewById(R.id.nameCreateProfil);
         phone = findViewById(R.id.phoneCreateprofil);
@@ -85,6 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(CheckPermission()) {
+
                     Intent select = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(select, SELECT_REQUEST_CODE);
                 }
@@ -103,6 +116,14 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+/*
+        save.setOnClickListener(v -> {
+            name.setText("image");
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+            String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+            name.setText(image);
+        });*/
 
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -122,6 +143,8 @@ public class ProfileActivity extends AppCompatActivity {
                         volontaires.setAdresse(addresS);
                         volontaires.setTelephon(phoneS);
                         volontaires.setName(user.getName());
+                        volontaires.setImage(ImageName);
+                        Vars.setImage(ImageName);
 
                         CreateProfilVolo(volontaires,bitmap);
                     } else if (user.getType().equals("Abris")) {
@@ -131,6 +154,8 @@ public class ProfileActivity extends AppCompatActivity {
                         abris.setAdresse(addresS);
                         abris.setTelephon(phoneS);
                         abris.setName(user.getName());
+                        abris.setImage(ImageName);
+                        Vars.setImage(ImageName);
                         CreateProfilAbri(abris,bitmap);
                     } else {
                         iServiseVeterinaire = retrofit.create(IServiseVeterinaire.class);
@@ -139,6 +164,8 @@ public class ProfileActivity extends AppCompatActivity {
                         veterinaires.setAdresse(addresS);
                         veterinaires.setTelephon(phoneS);
                         veterinaires.setName(user.getName());
+                        veterinaires.setImage(ImageName);
+                        Vars.setImage(ImageName);
                         CreateProfilVeto(veterinaires,bitmap);
 
                     }
@@ -173,7 +200,8 @@ public class ProfileActivity extends AppCompatActivity {
                     if (volontairesResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
-                        progressDialog.dismiss();
+                        Vars.setImage(image);
+
                     }else {
                         Toast.makeText(ProfileActivity.this, volontairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -208,7 +236,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (abriResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
-                        progressDialog.dismiss();
+
 
                     }else {
                         Toast.makeText(ProfileActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
@@ -243,7 +271,8 @@ public class ProfileActivity extends AppCompatActivity {
                     if (veterinairesResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
-                        progressDialog.dismiss();
+
+
                     }else {
                         Toast.makeText(ProfileActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -297,10 +326,13 @@ public class ProfileActivity extends AppCompatActivity {
             case CAPTURE_REQUEST_CODE:
             {
                 if(resultCode == RESULT_OK){
+                    ImageUri = data.getData();
 
-                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    bitmap = (Bitmap) data.getExtras().get("data");
                     imgprofil.setImageBitmap(bitmap);
+                    uploadFile(ImageUri);
                     progressDialog.show();
+
 
                 }
 
@@ -312,9 +344,11 @@ public class ProfileActivity extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
 
                     try {
-                        Uri ImageUri = data.getData();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
+                         ImageUri = data.getData();
+
+                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
                         imgprofil.setImageBitmap(bitmap);
+                        uploadFile(ImageUri);
                         progressDialog.show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -371,6 +405,43 @@ public class ProfileActivity extends AppCompatActivity {
             return true;
 
         }
+    }
+
+    private void uploadFile(Uri fileUri) {
+        IServieceUser service =
+                iServieceUser;
+
+       // String selectedFilePath = FilePath.getPath(UploadImage.this, fileUri);
+
+        final File f = new File(ImageUri.getPath());
+
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse(getContentResolver().getType(fileUri)),
+                        f
+                );
+        Log.e("body:", f.getName());
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("file", f.getName(), requestFile);
+        Log.e("body:", body.toString());
+
+        Call<ResponseClass> call = service.UploadImage(body);
+        call.enqueue(new Callback<ResponseClass>() {
+            @Override
+            public void onResponse(Call<ResponseClass> call,
+                                   Response<ResponseClass> response) {
+                ResponseClass responseClass = response.body();
+                ImageName= responseClass.getFilename();
+                Log.v("Upload", "success");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseClass> call, Throwable t) {
+                Log.e("Upload error:", t.getMessage());
+
+            }
+
+        });
     }
 
 }
