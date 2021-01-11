@@ -236,7 +236,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (abriResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
-
+                        Vars.setImage(image);
 
                     }else {
                         Toast.makeText(ProfileActivity.this, abriResponse.toString(), Toast.LENGTH_SHORT).show();
@@ -271,7 +271,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if (veterinairesResponse.getSuccess().equals("true")){
                         Vars.setAddress(addres.getText().toString());
                         Vars.setPhone(phone.getText().toString());
-
+                        Vars.setImage(image);
 
                     }else {
                         Toast.makeText(ProfileActivity.this, veterinairesResponse.toString(), Toast.LENGTH_SHORT).show();

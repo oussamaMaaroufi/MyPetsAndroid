@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                     b= true;
                         user.setType("Veterinaires");
                 }
-                if(!b) {
+                if(!b ) {
                     Toast.makeText(RegisterActivity.this, "Role cannot be null or empyt", Toast.LENGTH_SHORT).show();
                 }else
                 {

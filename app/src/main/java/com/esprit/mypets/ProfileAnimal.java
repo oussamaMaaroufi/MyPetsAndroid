@@ -55,6 +55,7 @@ public class ProfileAnimal extends AppCompatActivity {
         type = findViewById(R.id.TypeAnimalProfile);
         Rase = findViewById(R.id.RaceAnimalProfile);
         info = findViewById(R.id.btnInfo);
+
         Intent intent =getIntent();
 
         Animal a = new Animal();
