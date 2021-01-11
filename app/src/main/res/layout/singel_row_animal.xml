@@ -35,12 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
+                android:textColor="@color/black"
                 android:text="name"
                 android:textIsSelectable="true"
                 android:textSize="20dp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/raceAnimalHome"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

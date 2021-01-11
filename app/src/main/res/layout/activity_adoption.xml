@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/black"
-                    app:title="SHELTER PROFILE" />
+                    app:title="My Animal" />
 
             </com.google.android.material.appbar.AppBarLayout>
 

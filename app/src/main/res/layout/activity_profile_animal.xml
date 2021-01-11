@@ -99,11 +99,11 @@
 
             <Button
                 android:layout_weight="1"
-                android:id="@+id/btnphotosAnimal"
+                android:id="@+id/btnInfo"
                 android:layout_width="124dp"
                 android:layout_height="59dp"
                 android:layout_margin="5dp"
-                android:text="Photos"
+                android:text="for more info"
                 android:textColor="@color/black" />
 
         </LinearLayout>
