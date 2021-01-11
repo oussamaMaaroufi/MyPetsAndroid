@@ -119,9 +119,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
+    //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    //email.toString().trim().matches(emailPattern)
     private void loginUser(String email, String password) {
-        if (email.isEmpty()) {
+        if (email.isEmpty() ) {
             Toast.makeText(this, "Email cannot be null or empyt", Toast.LENGTH_SHORT).show();
         } else if (password.isEmpty()) {
             Toast.makeText(this, "password cannot be null or empyt", Toast.LENGTH_SHORT).show();
