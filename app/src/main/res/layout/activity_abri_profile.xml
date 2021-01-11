@@ -86,7 +86,6 @@
             android:layout_gravity="center"
             >
 
-
             <Button
                 android:id="@+id/btnMyAnimalsAbri"
                 android:layout_width="118dp"

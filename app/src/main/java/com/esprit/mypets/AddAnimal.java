@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class AddAnimal extends AppCompatActivity {
     Bitmap bitmap;
     Retrofit retrofitClient = RetrofitClient.getInstance();
     IServiseAnimal iServiseAnimal =retrofitClient.create(IServiseAnimal.class);
+    private ImageButton btnMenu;
 
 
     @Override
@@ -62,6 +64,14 @@ public class AddAnimal extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }catch (Exception e){
         }
+        btnMenu = findViewById(R.id.btnmenu9);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddAnimal.this,SideMenu.class);
+                startActivity(intent);
+            }
+        });
 
         name = findViewById(R.id.NameAddAnimal);
         race = findViewById(R.id.race);

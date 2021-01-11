@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Adoption">
 
+
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
-
-
         <LinearLayout
-            android:id="@+id/ll11"
+            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -25,7 +27,7 @@
             tools:ignore="MissingConstraints">
 
             <ImageButton
-                android:id="@+id/btnmenu11"
+                android:id="@+id/btnmenu10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
@@ -41,16 +43,18 @@
                 >
 
                 <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/nav_view11"
+                    android:id="@+id/nav_view8"
                     style="@style/Widget.MaterialComponents.Toolbar.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/black"
-                    app:title="ADOPTION" />
+                    app:title="My Animal" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
         </LinearLayout>
+
+
         <ImageView
 
             android:id="@+id/imageProfileAnimal"
