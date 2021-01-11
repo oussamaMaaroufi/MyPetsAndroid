@@ -156,10 +156,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     private  void CreateProfilVolo(Volontaires volontaires,Bitmap bitmap){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-        volontaires.setImage(image);
+
         try {
             Call<VolontairesResponse> call = iServiseVolontaires.registerVeterinaires(volontaires);
             call.enqueue(new Callback<VolontairesResponse>() {
@@ -190,10 +187,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
     private  void CreateProfilAbri(Abris abris ,Bitmap bitmap){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-        abris.setImage(image);
+
 
         try {
             Call<AbriResponse> call = iServeceAbri.registerAbri(abris);
@@ -226,10 +220,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
     private  void CreateProfilVeto(Veterinaires veterinaires,Bitmap bitmap){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-        veterinaires.setImage(image);
+
         try {
             Call<VeterinairesResponse> call = iServiseVeterinaire.registerVeterinaires(veterinaires);
             call.enqueue(new Callback<VeterinairesResponse>() {
@@ -298,7 +289,7 @@ public class ProfileActivity extends AppCompatActivity {
             {
                 if(resultCode == RESULT_OK){
 
-                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                     bitmap = (Bitmap) data.getExtras().get("data");
                     imgprofil.setImageBitmap(bitmap);
                     progressDialog.show();
 
@@ -313,7 +304,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     try {
                         Uri ImageUri = data.getData();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
+                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
                         imgprofil.setImageBitmap(bitmap);
                         progressDialog.show();
                     } catch (IOException e) {
